@@ -1,0 +1,101 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+:root {
+  --nav-clr: #6b705c;
+  --primary-clr: #a5a58d;
+  --secondary-clr: #b7b7a4;
+  --tertiary-clr: #ffe8d6;
+  --quaternary-clr: #ddbea9;
+  --quinary-clr: #cb997e;
+  --nav-chars: white;
+  --nav-height: 80px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/*================
+Header/Navigation
+================*/
+#nav-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: var(--nav-clr);
+  height: var(--nav-height);
+}
+#furniture-express {
+  color: var(--nav-chars);
+  font-family: "Brush Script MT";
+  font-size: 2rem;
+  margin-left: 40px;
+  width: max-content;
+}
+.nav-btn {
+  color: var(--nav-chars);
+  margin-right: 20px;
+  padding: 5px;
+}
+.nav-btn:hover {
+  box-shadow: 0px 2px white;
+}
+#shopping-cart {
+  color: var(--nav-chars);
+  font-size: 1.5rem;
+  margin-right: 40px;
+}
+#menu-icon {
+  display: none;
+  color: var(--nav-chars);
+  margin-right: 40px;
+  font-size: 2rem;
+}
+.nav-spans {
+  flex-basis: 250px;
+}
+
+/*================
+    Footer
+================*/
+#footer-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--nav-clr);
+  color: var(--nav-chars);
+  height: 60px;
+}
+#copyright-tag {
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+/*================
+Media Queries
+================*/
+@media only screen and (max-width: 800px) {
+  #footer-bar {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+  }
+  .nav-btn {
+    display: none;
+  }
+  #shopping-cart {
+    display: none;
+  }
+  #menu-icon {
+    display: inline-block;
+  }
+}
