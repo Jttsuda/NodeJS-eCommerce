@@ -1,4 +1,48 @@
-#wood-table {
-  width: 600px;
-  height: 700px;
+#about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - var(--footer-height));
+}
+#content-container {
+  transform: translateY(calc(var(--footer-height) / 2));
+  display: flex;
+  max-width: 1200px;
+}
+#about-img {
+  margin: 20px;
+}
+#about-content {
+  margin: 20px;
+}
+.underline {
+  height: 4px;
+  width: 100px;
+  background-color: var(--nav-clr);
+}
+#about-subtext {
+  margin-top: 20px;
+  font-weight: 100;
+  line-height: 2.5rem;
+}
+
+/*================
+Media Queries
+================*/
+@media only screen and (max-width: 975px) {
+  #about-container {
+    display: block;
+  }
+  #content-container {
+    transform: translateY(100px);
+  }
+  #about-img {
+    display: none;
+  }
+  #about-content {
+    text-align: center;
+  }
+  .underline {
+    margin: auto;
+  }
 }

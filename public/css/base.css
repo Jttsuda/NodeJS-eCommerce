@@ -13,6 +13,7 @@
   --quinary-clr: #cb997e;
   --nav-chars: white;
   --nav-height: 80px;
+  --footer-height: 60px;
 }
 a {
   text-decoration: none;
@@ -72,7 +73,7 @@ Header/Navigation
   align-items: center;
   background-color: var(--nav-clr);
   color: var(--nav-chars);
-  height: 60px;
+  height: var(--footer-height);
 }
 #copyright-tag {
   font-size: 1rem;
