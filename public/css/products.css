@@ -1,0 +1,35 @@
+#products-main-div {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-top: calc(var(--nav-height) + 40px);
+  height: 100vh;
+}
+#filters-container {
+}
+input {
+  padding: 10px;
+  background-color: rgb(240, 240, 240);
+  border: 0px;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-right: 40px;
+}
+#products-found {
+  font-weight: 100;
+  font-size: 1rem;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+#category-title {
+  margin: 20px;
+}
+.category-filter {
+  font-weight: 100;
+  margin: 10px;
+  margin-left: 25px;
+}
+#hr-line {
+  height: 1px;
+  width: 600px;
+}

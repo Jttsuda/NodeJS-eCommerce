@@ -1,0 +1,88 @@
+:root {
+  --box-padding: 40px;
+  --main-border-radius: 5px;
+  --input-border-radius: 5px;
+}
+input {
+  padding: 10px;
+  margin-right: var(--box-padding);
+  border: 0px;
+  border-top-right-radius: var(--input-border-radius);
+  border-bottom-right-radius: var(--input-border-radius);
+}
+#page-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100vh - var(--footer-height));
+}
+#login-container {
+  margin-top: calc(var(--nav-height) + 100px);
+  background-color: var(--nav-clr);
+  border-radius: var(--main-border-radius);
+  color: var(--nav-chars);
+}
+#login-register-div {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: calc(var(--box-padding) / 2);
+  font-size: 1.5rem;
+}
+.login-pass-container {
+  display: flex;
+}
+.login-icon-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(14, 29, 14);
+  margin-left: var(--box-padding);
+  width: 40px;
+  height: 35px;
+  border-top-left-radius: var(--input-border-radius);
+  border-bottom-left-radius: var(--input-border-radius);
+  transform: translate(5px);
+}
+.user-pass {
+  outline: none;
+  margin-bottom: 1rem;
+  margin-left: 5px;
+}
+
+#forgot-block {
+  text-align: center;
+}
+.forgot-pass {
+  display: inline-block;
+  color: var(--nav-chars);
+  font-weight: 100;
+  margin: 5px;
+}
+
+/* Log In/Register Buttons */
+#login-btn {
+  cursor: pointer;
+  background-color: rgb(14, 29, 14);
+  color: var(--nav-chars);
+  width: 100%;
+  height: 60px;
+  margin-top: 20px;
+  border-bottom-left-radius: var(--main-border-radius);
+  border-bottom-right-radius: var(--main-border-radius);
+}
+.login-register {
+  margin: 0px 20px;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  font-size: 1.2rem;
+  width: 110px;
+}
+.account-hr {
+  height: 1px;
+  border: none;
+  background-color: rgb(228, 228, 228);
+}
+.selected {
+  background-color: rgb(65, 65, 65);
+}

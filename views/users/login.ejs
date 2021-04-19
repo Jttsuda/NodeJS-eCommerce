@@ -1,0 +1,72 @@
+<%- include('../partials/header.ejs') %>
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/users/authentication.css">
+
+<div id="page-container">
+    <form id="login-container">
+        <div id="login-register-div">
+            <div>
+                <a href=""><div class="login-register">Sign In</div></a>
+                <hr class="account-hr selected">
+            </div>
+            <div>
+                <a href="/register"><div class="login-register" style="color: white;">Register</div></a>
+                <hr class="account-hr">
+            </div>
+        </div>
+        <div class="login-pass-container">
+            <span class="login-icon-box">
+                <em class="far fa-address-card"></em>
+            </span>
+            <input type="text" placeholder="yours@example.com" class="user-pass" name="username">
+        </div>
+        <div class="login-pass-container">
+            <span class="login-icon-box">
+                <em class="fas fa-lock"></em>
+            </span>
+            <input type="password" placeholder="your password" class="user-pass" name="password">
+        </div>
+        <div id="forgot-block">
+            <a href=""><h4 class="forgot-pass">Forgot Your Password?</h4></a>
+        </div>
+        <!-- Sign In BTN -->
+        <input type="submit" id="login-btn" value="SIGN IN">
+    </form>
+    <div class="error"></div>
+</div>
+
+<script>
+    const form = document.querySelector('form');
+    const loginError = document.querySelector('.error');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Reset Errors
+        loginError.textContent = '';
+
+        // get values
+        const username = form.username.value;
+        const password = form.password.value;
+        try {
+            const res = await fetch('/login', {
+                method: 'POST',
+                body: JSON.stringify({ username, password }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await res.json();
+            // Set Errors
+            if (data.error) {
+                loginError.textContent = data.error;
+            }
+            // Success and Redirect
+            if (data.user) {
+                location.assign('/');
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    });
+</script>
+<%- include('../partials/footer.ejs') %>

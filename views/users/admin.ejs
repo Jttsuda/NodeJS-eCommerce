@@ -1,0 +1,20 @@
+<%- include('../partials/header.ejs') %>
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/users/admin.css">
+
+<div id="page-container">
+    <div class="add-product-container">
+        <form action="/admin" method="POST" enctype="multipart/form-data">
+            <h1>Add Product</h1>
+            <label for="title">Title: </label>
+            <input type="text" name="title">
+            <label for="title">Desc: </label>
+            <input type="text" name="desc">
+            <label for="title">IMG: </label>
+            <input type="file" name="image" id="image">
+            <input type="submit">
+        </form>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>

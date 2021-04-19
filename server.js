@@ -1,11 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-// const commentRoutes = require('./routes/commentRoutes');
-// const userRoutes = require('./routes/userRoutes');
+const productsRoutes = require('./routes/productsRoutes');
+const userRoutes = require('./routes/userRoutes');
 const clsfd = require('./classified');
 const cookieParser = require('cookie-parser');
-// const { requireAuth, checkUser } = require('./middleware/authMiddleware');
+const { requireAuth, checkUser } = require('./middleware/authMiddleware');
+const multer = require('multer')
 
 
 // Initializing Express and View Engine (EJS)
@@ -31,18 +32,14 @@ app.use(express.json());//Auth for req.body
 app.use(express.urlencoded({ extended: true }));//Accepting POST Form Data
 app.use(morgan('dev'));
 app.use(cookieParser());
-// app.use(checkUser);
+app.use(checkUser);
 
 
 // Routes
-// app.use(userRoutes);
-// app.use('/comments', requireAuth, commentRoutes);
+app.use(userRoutes);
+app.use('/products', productsRoutes);
 app.get('/', (req, res) => res.render('home'));
 app.get('/about', (req, res) => res.render('about'));
-
-
-// Redirects
-app.get('/about-us', (req, res) => res.redirect('/about'));
 
 
 // 404 Page
