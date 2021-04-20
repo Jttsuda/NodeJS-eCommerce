@@ -5,7 +5,7 @@ const { user_register,
     user_login,
     user_login_post,
     user_logout } = require('../controllers/userController');
-const { add_product } = require('../controllers/adminController');
+const { add_product, admin, admin_toggle } = require('../controllers/adminController');
 const multer = require('multer')
 const Product = require('../models/product');
 
@@ -26,7 +26,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     limits:{
-        fieldSize:1024*1024*9
+        fieldSize:1024*1024*3
     },
 });
 
@@ -35,8 +35,10 @@ const upload = multer({
 router.route('/register').get(user_register).post(user_register_post);
 router.route('/login').get(user_login).post(user_login_post);
 router.get('/logout', user_logout);
-router.get('/admin',  (req, res) => res.render('users/admin'));
-router.post('/admin', upload.single('image'), add_product);
+router.get('/admin',  admin);
+router.get('/admin/:id',  admin_toggle);
+router.post('/admin', upload.array('image'), add_product);
+// router.post('/admin', upload.single('image'), add_product);
 
 
 module.exports = router;

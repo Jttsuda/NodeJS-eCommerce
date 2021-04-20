@@ -1,15 +1,97 @@
 #page-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: calc(100vh - var(--footer-height));
 }
-.add-product-container {
-  display: flex;
-  align-items: center;
-  height: 100px;
-  padding: 20px;
+
+/* User Info */
+.user-container {
+  margin-top: 100px;
+  max-height: 300px;
+  overflow: auto;
   border-radius: 5px;
   background-color: var(--nav-clr);
   color: var(--nav-chars);
+  margin-left: 40px;
+}
+.admin-title {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+}
+.field-names {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.admin-toggle {
+  width: 100%;
+  margin-left: 20px;
+}
+.user-info {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: 5px 30px;
+}
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: var(--dark-btn);
+  color: var(--nav-chars);
+  border-radius: 3px;
+  margin-right: 20px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+/* Add Product Styles */
+textarea {
+  resize: none;
+  padding: 5px;
+}
+.add-product-container {
+  margin-top: 100px;
+  height: fit-content;
+  width: min-content;
+  border-radius: 5px;
+  background-color: var(--nav-clr);
+  color: var(--nav-chars);
+  text-align: right;
+}
+.add-product-title {
+  margin-top: 10px;
+  text-align: center;
+}
+.margin {
+  outline: none;
+  display: inline-block;
+  margin: 10px;
+  padding: 5px;
+}
+.margin-right {
+  margin-right: 20px;
+}
+.align-center {
+  text-align: center;
+}
+.underline {
+  text-decoration: underline;
+}
+
+/* Upload Product Button */
+.submit-btn {
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 5px;
+  background-color: var(--dark-btn);
+  color: var(--nav-chars);
+  width: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 60px;
+  border: 0px;
 }

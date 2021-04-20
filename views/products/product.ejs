@@ -1,0 +1,12 @@
+<%- include('../partials/header.ejs') %>
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/products/product.css">
+
+<div class="product-container">
+    <div class="">
+        <img src="/images/products/<%= product.image[1] %>" alt="">
+        <h1><%= product.title %></h1>
+    </div>
+</div>
+
+<%- include('../partials/footer.ejs') %>

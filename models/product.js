@@ -7,14 +7,15 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
+    price: {
+        type: String,
+        required: true
+    },
     desc: {
         type: String,
         required: true
     },
-    image: {
-        type: String,
-        default: 'placeholder.jpg',
-    }
+    image: [String],
 }, { timestamps: true });
 
 
