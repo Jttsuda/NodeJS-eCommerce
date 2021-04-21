@@ -10,11 +10,10 @@ input {
   border-top-right-radius: var(--input-border-radius);
   border-bottom-right-radius: var(--input-border-radius);
 }
-#page-container {
+#auth-container {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: calc(100vh - var(--footer-height));
 }
 #login-container {
   margin-top: calc(var(--nav-height) + 100px);
@@ -36,7 +35,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(14, 29, 14);
+  background-color: var(--dark-btn);
   margin-left: var(--box-padding);
   width: 40px;
   height: 35px;
@@ -84,5 +83,5 @@ input {
   background-color: rgb(228, 228, 228);
 }
 .selected {
-  background-color: rgb(65, 65, 65);
+  background-color: rgb(0, 0, 0);
 }

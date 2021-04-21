@@ -5,14 +5,13 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 :root {
-  --nav-clr: #6b705c;
-  --primary-clr: #a5a58d;
-  --secondary-clr: #b7b7a4;
-  --tertiary-clr: #ffe8d6;
-  --quaternary-clr: #ddbea9;
-  --quinary-clr: #cb997e;
-  --nav-chars: white;
-  --dark-btn: rgb(14, 29, 14);
+  --nav-clr: #516a55;
+  --primary-clr: #8673692d;
+  --secondary-clr: #233a28;
+  --tertiary-clr: #bba79c;
+  --dark-btn: #233a28;
+  --nav-chars: #fbfcff;
+  --price-chars: rgba(165, 42, 42, 0.774);
   --nav-height: 80px;
   --footer-height: 60px;
 }
@@ -20,25 +19,28 @@ a {
   text-decoration: none;
   color: black;
 }
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
 
 /*================
 Header/Navigation
 ================*/
 #nav-bar {
+  position: absolute;
+  top: 0px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
   background-color: var(--nav-clr);
   height: var(--nav-height);
 }
 #furniture-express {
   color: var(--nav-chars);
   font-family: "Brush Script MT";
-  font-size: 2rem;
+  font-size: 3rem;
   margin-left: 40px;
   width: max-content;
 }
@@ -46,6 +48,7 @@ Header/Navigation
   color: var(--nav-chars);
   margin-right: 20px;
   padding: 5px;
+  font-size: 1.2rem;
 }
 .nav-btn:hover {
   box-shadow: 0px 2px white;
@@ -69,12 +72,15 @@ Header/Navigation
     Footer
 ================*/
 #footer-bar {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: var(--footer-height);
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--nav-clr);
   color: var(--nav-chars);
-  height: var(--footer-height);
 }
 #copyright-tag {
   font-size: 1rem;
@@ -85,12 +91,6 @@ Header/Navigation
 Media Queries
 ================*/
 @media only screen and (max-width: 800px) {
-  #footer-bar {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-  }
   .nav-btn {
     display: none;
   }

@@ -1,0 +1,23 @@
+<!-- Navigation -->
+<nav id="nav-bar">
+    <% if (user) { %>
+        <a href="/"><h1 id="furniture-express">Welcome, <%= user.username %></h1></a>
+    <% } else { %>
+        <a href="/"><h1 id="furniture-express">Furniture Express</h1></a>
+    <% } %>
+    <span class="nav-spans"></span>
+    <% if (user && user.admin === true) { %>
+        <a href="/admin" class="nav-btn">Admin</a>
+    <% } %>
+    <a href="/" class="nav-btn">Home</a>
+    <a href="/about" class="nav-btn">About</a>
+    <a href="/products" class="nav-btn">Products</a>
+    <span class="nav-spans"></span>
+    <% if (!user) { %>
+        <a href="/login" class="nav-btn">Login/Register</a>
+    <% } else { %>
+        <a href="/logout" class="nav-btn">Logout</a>
+    <% } %>
+    <a href="/cart"><em class="fas fa-shopping-cart" id="shopping-cart"></em></a>
+    <a href=""><em class="fas fa-bars" id="menu-icon"></em></a>
+</nav>

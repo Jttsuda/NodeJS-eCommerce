@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - var(--footer-height));
+  min-height: calc(100vh - var(--footer-height));
 }
 #content-container {
   transform: translateY(calc(var(--footer-height) / 2));
@@ -29,7 +29,7 @@
 /*================
 Media Queries
 ================*/
-@media only screen and (max-width: 975px) {
+@media only screen and (max-width: 975px), (max-height: 740px) {
   #about-container {
     display: block;
   }

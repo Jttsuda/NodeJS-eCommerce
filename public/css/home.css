@@ -1,10 +1,12 @@
 /* Front Headline */
 .front-headlines {
   display: flex;
-  align-items: center;
   margin: auto;
-  height: 100vh;
   max-width: 1200px;
+}
+.landing-site {
+  height: 100vh;
+  align-items: center;
 }
 .fit-content {
   height: fit-content;
@@ -39,7 +41,6 @@
 }
 .headline-img {
   width: 440px;
-  cursor: pointer;
   border-radius: 5px;
   margin: 20px;
 }
@@ -54,6 +55,7 @@
 #custom-div {
   background-color: var(--secondary-clr);
   height: 330px;
+  color: var(--nav-chars);
 }
 .custom-furniture {
   text-align: center;
@@ -68,6 +70,7 @@
 #box-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 100px;
 }
 .boxes {
   display: inline-block;
@@ -83,7 +86,6 @@
 .icon-circle {
   display: inline-block;
   background-color: var(--secondary-clr);
-  color: black;
   width: 50px;
   padding: 15px;
   margin: 15px;
@@ -109,7 +111,8 @@ Media Queries
     display: none;
   }
 }
-@media only screen and (max-width: 800px) {
+
+@media only screen and (max-width: 800px), (max-height: 740px) {
   .boxes {
     width: 90vw;
     margin-bottom: 10px;
@@ -137,10 +140,6 @@ Media Queries
   }
   .remove-padding {
     padding-top: 0px;
-  }
-  #outer-box-container {
-    display: flex;
-    justify-content: center;
   }
   #box-container {
     flex-direction: column;

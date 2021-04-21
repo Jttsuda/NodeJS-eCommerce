@@ -1,46 +1,48 @@
 <%- include('../partials/header.ejs') %>
-<link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/css/products/products.css">
-
-<div id="products-main-div">
-    <div class="filters-container">
-        <input type="text" placeholder="Search">
-        <h2 id="category-title">Category</h2>
-        <h3 class="category-filter">All</h3>
-        <h3 class="category-filter">Living Room</h3>
-        <h3 class="category-filter">Bedroom</h3>
-        <h3 class="category-filter">Office</h3>
-        <h3 class="category-filter">Dining</h3>
-        <h3 class="category-filter">Kitchen</h3>
-    </div>
-    <div>
-        <div class="top-line">
-            <hr id="hr-line">
-            <span id="products-found"><%= products.length %> Products Found</span>
+<div class="page-container">
+    <%- include('../partials/nav.ejs') %>
+    <div id="products-main-div">
+        <div class="filters-container">
+            <input type="text" placeholder="Search">
+            <h2 id="category-title">Category</h2>
+            <h3 class="category-filter">All</h3>
+            <h3 class="category-filter">Living Room</h3>
+            <h3 class="category-filter">Bedroom</h3>
+            <h3 class="category-filter">Office</h3>
+            <h3 class="category-filter">Dining</h3>
+            <h3 class="category-filter">Kitchen</h3>
         </div>
-        <div class="products-container">
-            <% if (products.length> 0) { %>
-                <% products.forEach(product=> { %>
-                    <a href="/products/<%= product.id %>">
-                        <div class="product-info">
-                            <img src="/images/products/<%= product.image[0] %>" alt="" class="product-img">
-                            <div class="title-price">
-                                <h3 class="product-title">
-                                    <%= product.title %>
-                                </h3>
-                                <h3 class="product-price">
-                                    $<%= product.price %>
-                                </h3>
+        <div>
+            <div class="top-line">
+                <hr id="hr-line">
+                <span id="products-found"><%= products.length %> Products Found</span>
+            </div>
+            <div class="products-container">
+                <% if (products.length> 0) { %>
+                    <% products.forEach(product=> { %>
+                        <a href="/products/<%= product.id %>">
+                            <div class="product-info">
+                                <img src="/images/products/<%= product.image[0] %>" alt="" class="product-img">
+                                <div class="title-price">
+                                    <h3 class="product-title">
+                                        <%= product.title %>
+                                    </h3>
+                                    <h3 class="product-price">
+                                        $<%= product.price %>
+                                    </h3>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                <% }) %>
-            <% } else { %>
-                <h3>Nothing to Display</h3>
-            <% } %>
+                        </a>
+                    <% }) %>
+                <% } else { %>
+                    <h3>Nothing to Display</h3>
+                <% } %>
+            </div>
         </div>
     </div>
-</div>
-
-
+    
 <%- include('../partials/footer.ejs') %>
+</div>
+</body>
+</html>

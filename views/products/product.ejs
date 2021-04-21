@@ -1,12 +1,51 @@
 <%- include('../partials/header.ejs') %>
-<link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/css/products/product.css">
 
-<div class="product-container">
-    <div class="">
-        <img src="/images/products/<%= product.image[1] %>" alt="">
-        <h1><%= product.title %></h1>
+<div class="page-container">
+    <%- include('../partials/nav.ejs') %>
+    <div class="product-container">
+        <div>
+            <img src="/images/products/<%= product.image[1] %>" alt=""class="img-container">
+            <% if (user && user.admin) { %>
+                <a href="" id="delete-btn" data-delete="<%= product.id %>">Delete</a>
+            <% } %>
+        </div>
+        <div class="product-info">
+            <h1><%= product.title %></h1>
+            <h2 class="product-price">$<%= product.price %></h2>
+            <h3 class="product-desc"><%= product.desc %></h3>
+            <div class="shipping-info">
+                <div>
+                    <h3 class="margin">Available:</h3>
+                    <h3>SKU:</h3>
+                </div>
+                <div class="product-info">
+                    <h3 class="current-info margin">In Stock</h3>
+                    <h3 class="current-info"><%= product.id %></h3>
+                </div>
+            </div>
+            <hr>
+            <h2 class="margin">- 1 +</h2>
+            <input type="submit" value="Add To Cart" class="add-to-cart">
+        </div>
     </div>
 </div>
 
 <%- include('../partials/footer.ejs') %>
+
+<!-- Fetch API (Delete) -->
+<script>
+    const deleteProduct = document.getElementById('delete-btn');
+
+    deleteProduct.addEventListener('click', (e) => {
+        const url = `/products/${deleteProduct.dataset.delete}`;
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                window.location.href = data.redirect
+            })
+            .catch((err) => console.log(err));
+    })
+</script>
