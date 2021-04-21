@@ -19,6 +19,10 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    cart: [{
+    product: String,
+    qty: Number
+     }]
     // comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 });
 

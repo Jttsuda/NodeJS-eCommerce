@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 
 // Connect to MongoDB using Mongoose and Listening for Requests
 const PORT = process.env.PORT || 3000;
-mongoose.connect(clsfd.dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+mongoose.connect(clsfd.dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
     .then((result)  => { 
         console.log('connected to DB');
         app.listen(PORT, () => {
