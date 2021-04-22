@@ -59,23 +59,29 @@ const add_product = async (req, res) => {
 
                 inventory.splice(i, 1);
                 await User.findByIdAndUpdate(userId, { cart: [{ product: productId, qty: newQty }, ...inventory] });
-                return res.json({ msg: 'Success' });
+                return res.json({ redirect: '/products' });
             }
         }
 
         await User.findByIdAndUpdate(userId, { cart: [{ product: productId, qty: quantity }, ...inventory] });
-        res.json({ msg: 'Success' });
-    }
-    catch (error) {
+        res.json({ redirect: '/products' });
+    } catch (error) {
         console.log(error);
+        res.json({ msg: error });
     }
 }
 
+
+// Cart View
+const cart_view = async (req, res) => {
+    res.render('products/cart');
+}
 
 
 module.exports = { 
     product_index, 
     product_details, 
     product_delete, 
-    add_product
+    add_product,
+    cart_view
 }

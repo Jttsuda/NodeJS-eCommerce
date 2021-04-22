@@ -1,9 +1,9 @@
 <!-- Navigation -->
 <nav id="nav-bar">
     <% if (user) { %>
-        <a href="/"><h1 id="furniture-express">Welcome, <%= user.username %></h1></a>
+        <a href="/"><h1 id="company-logo">Welcome, <%= user.username %></h1></a>
     <% } else { %>
-        <a href="/"><h1 id="furniture-express">Furniture Express</h1></a>
+        <a href="/"><h1 id="company-logo">Furniture Express</h1></a>
     <% } %>
     <span class="nav-spans"></span>
     <% if (user && user.admin === true) { %>
@@ -18,6 +18,17 @@
     <% } else { %>
         <a href="/logout" class="nav-btn">Logout</a>
     <% } %>
-    <a href="/cart"><em class="fas fa-shopping-cart" id="shopping-cart"></em></a>
+
     <a href=""><em class="fas fa-bars" id="menu-icon"></em></a>
+
+    <!-- Shopping Cart -->
+    <div id="shopping-cart">
+        <a href="/cart"><em class="fas fa-shopping-cart"></em></a>
+        <% if (user) { %>
+            <div class="item-qty"><%= total %></div>
+        <% } else { %>
+            <div class="item-qty">0</div>
+        <% } %>
+    </div>
+
 </nav>

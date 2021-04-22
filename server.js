@@ -5,7 +5,8 @@ const productsRoutes = require('./routes/productsRoutes');
 const userRoutes = require('./routes/userRoutes');
 const clsfd = require('./classified');
 const cookieParser = require('cookie-parser');
-const { requireAuth, checkUser } = require('./middleware/authMiddleware');
+const { cart_view } = require('./controllers/productController');
+const { requireAuth, checkUser, checkUserCart } = require('./middleware/authMiddleware');
 const multer = require('multer')
 
 
@@ -40,6 +41,7 @@ app.use(userRoutes);
 app.use('/products', productsRoutes);
 app.get('/', (req, res) => res.render('home'));
 app.get('/about', (req, res) => res.render('about'));
+app.get('/cart', checkUserCart, cart_view);
 
 
 // 404 Page
