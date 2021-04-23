@@ -1,16 +1,14 @@
 #about-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - var(--footer-height));
+  margin-top: 100px;
 }
 #content-container {
-  transform: translateY(calc(var(--footer-height) / 2));
   display: flex;
   max-width: 1200px;
 }
 #about-img {
-  margin: 20px;
+  margin: 0px 20px;
 }
 #about-content {
   margin: 20px;
@@ -29,20 +27,14 @@
 /*================
 Media Queries
 ================*/
-@media only screen and (max-width: 975px), (max-height: 740px) {
+@media only screen and (max-width: 975px) {
   #about-container {
     display: block;
-  }
-  #content-container {
-    transform: translateY(100px);
+    margin-top: 20px;
   }
   #about-img {
-    display: none;
-  }
-  #about-content {
-    text-align: center;
-  }
-  .underline {
-    margin: auto;
+    width: 300px;
+    height: 300px;
+    align-self: center;
   }
 }

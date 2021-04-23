@@ -16,17 +16,27 @@
             <h3 class="product-desc"><%= product.desc %></h3>
             <div class="shipping-info">
                 <div>
-                    <h3 class="margin">Available:</h3>
-                    <h3>SKU:</h3>
+                    <h3 class="current-info"><strong>Available:</strong></h3>
+                    <h3 class="current-info"><strong>SKU:</strong></h3>
                 </div>
                 <div class="product-info">
-                    <h3 class="current-info margin">In Stock</h3>
+                    <h3 class="current-info">In Stock</h3>
                     <h3 class="current-info"><%= product.id %></h3>
                 </div>
             </div>
             <hr>
-            <h2 class="margin" id="product-qty">1</h2>
-            <a href="#" id="add-btn" data-add="<%= product._id %>" class="add-to-cart">Add To Cart</a>
+            <!-- Qty -->
+            <div class="addtocart-container">
+                <div class="qty-container">
+                    <em class="fas fa-minus qty-icon"></em>
+                    <span id="product-qty">1</span>
+                    <em class="fas fa-plus qty-icon"></em>
+                </div>
+                <div>
+                    <a href="#" id="add-btn" 
+                    data-add="<%= product._id %>" class="add-to-cart">Add To Cart</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

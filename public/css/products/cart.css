@@ -1,5 +1,5 @@
 .margin-top {
-  padding-top: 150px;
+  padding-top: var(--margin-top);
 }
 .grid-container {
   display: grid;
@@ -39,7 +39,7 @@
   right: -70px;
   background-color: var(--flat-black);
   color: var(--nav-chars);
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-radius: 3px;
 }
 
@@ -60,16 +60,16 @@ Below Products
   margin: auto;
 }
 .continue-shopping {
-  background-color: var(--dark-btn);
+  background-color: var(--flat-black);
   color: var(--nav-chars);
-  padding: 5px 15px;
+  padding: 10px 15px;
   border-radius: 3px;
   width: fit-content;
 }
 .clear-cart {
   background-color: var(--flat-black);
   color: var(--nav-chars);
-  padding: 5px 15px;
+  padding: 10px 15px;
   border-radius: 3px;
   width: fit-content;
   place-self: end;
@@ -81,6 +81,7 @@ Below Products
   border-radius: 3px;
   max-width: fit-content;
   padding-top: 20px;
+  margin-bottom: 100px;
   margin-top: 20px;
   place-self: end;
 }
@@ -110,7 +111,7 @@ Below Products
   text-align: center;
   background-color: var(--dark-btn);
   color: var(--nav-chars);
-  padding: 10px;
+  padding: 15px 15px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }

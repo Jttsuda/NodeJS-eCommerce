@@ -5,17 +5,17 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 :root {
-  --nav-clr: #516a55;
-  --primary-clr: #8673692d;
-  --secondary-clr: #233a28;
-  --tertiary-clr: #bba79c;
-  --dark-btn: #233a28;
+  --nav-clr: #928370;
+  --primary-clr: #fbf8f4;
+  --secondary-clr: #7f6e57;
+  --dark-btn: #40372c;
   --flat-black: rgb(32, 32, 32);
   --nav-chars: #fbfcff;
   --price-chars: rgba(165, 42, 42, 0.774);
   --line-clr: rgb(138, 138, 138);
   --nav-height: 80px;
   --footer-height: 60px;
+  --margin-top: 40px;
 }
 a {
   text-decoration: none;
@@ -30,21 +30,20 @@ a {
 Header/Navigation
 ================*/
 #nav-bar {
-  position: absolute;
-  top: 0px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: var(--nav-clr);
+}
+#navigation {
+  display: flex;
   height: var(--nav-height);
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
 }
 #company-logo {
-  color: var(--nav-chars);
-  font-family: "Brush Script MT";
-  font-size: 3rem;
+  width: 200px;
   margin-left: 40px;
-  width: max-content;
 }
 .nav-btn {
   color: var(--nav-chars);
@@ -60,9 +59,6 @@ Header/Navigation
   color: var(--nav-chars);
   margin-right: 40px;
   font-size: 2rem;
-}
-.nav-spans {
-  flex-basis: 200px;
 }
 
 /* Shopping Cart */
@@ -108,11 +104,15 @@ Header/Navigation
   font-size: 1rem;
   font-weight: 100;
 }
+.company-title {
+  color: var(--nav-clr);
+  margin-right: 5px;
+}
 
 /*================
 Media Queries
 ================*/
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 950px) {
   .nav-btn {
     display: none;
   }
