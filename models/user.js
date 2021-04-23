@@ -23,7 +23,6 @@ const userSchema = new Schema({
     product: String,
     qty: Number
      }]
-    // comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 });
 
 

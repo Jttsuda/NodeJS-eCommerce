@@ -47,7 +47,8 @@ const product_delete = async (req, res) => {
 // Add Product to Cart
 const add_product = async (req, res) => {
     try {
-        const { userId, productId, quantity } = req.body;
+        const { productId, quantity } = req.body;
+        const userId = res.locals.user._id;
         const userCart = await User.findById(userId);
         let inventory = userCart.cart;
 
@@ -59,12 +60,12 @@ const add_product = async (req, res) => {
 
                 inventory.splice(i, 1);
                 await User.findByIdAndUpdate(userId, { cart: [{ product: productId, qty: newQty }, ...inventory] });
-                return res.json({ redirect: '/products' });
+                return res.json({ redirect: '/cart' });
             }
         }
 
         await User.findByIdAndUpdate(userId, { cart: [{ product: productId, qty: quantity }, ...inventory] });
-        res.json({ redirect: '/products' });
+        res.json({ redirect: '/cart' });
     } catch (error) {
         console.log(error);
         res.json({ msg: error });
@@ -74,7 +75,31 @@ const add_product = async (req, res) => {
 
 // Cart View
 const cart_view = async (req, res) => {
+    if (typeof res.locals.user === 'object') {
+        const user = res.locals.user;
+        let items = [];
+        let subTotals = [];
+        let subTotal = 0.0;
+        let totalPrice = 0.0;
+        // Getting Cart Objects, SubTotals, and Total Price
+        for (let i = 0; i < user.cart.length; i++) {
+            const pid = user.cart[i].product;
+            const product = await Product.findById(pid);
+            const qty = user.cart[i].qty;
+            items.push(product);
+            subTotal += Number(product.price) * Number(qty);
+            subTotal = subTotal.toFixed(2);
+            subTotals.push(subTotal);
+            totalPrice += Number(subTotal);
+            subTotal = 0;
+        }
+
+        res.locals.items = items;
+        res.locals.subTotals = subTotals;
+        res.locals.totalPrice = totalPrice;
+    }
     res.render('products/cart');
+
 }
 
 

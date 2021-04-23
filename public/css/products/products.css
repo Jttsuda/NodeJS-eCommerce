@@ -1,4 +1,4 @@
-#products-main-div {
+#main-container {
   display: flex;
   justify-content: center;
   padding-top: calc(var(--nav-height) + 40px);

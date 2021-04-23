@@ -1,37 +1,53 @@
 <%- include('../partials/header.ejs') %>
 <link rel="stylesheet" href="/css/products/cart.css">
-
 <div class="page-container">
 <%- include('../partials/nav.ejs') %>
 
 
-    <div class="cart-view">
-        <div id="cart-titles">
-            <h1 class="cart-title">Item</h1>
-            <h1 class="cart-title">Price</h1>
-            <h1 class="cart-title">Quantity</h1>
-            <h1 class="cart-title">Subtotal</h1>
+<div class="grid-container margin-top">
+    <h1 class="grid-item">Item</h1>
+    <h1 class="grid-item">Price</h1>
+    <h1 class="grid-item">Quantity</h1>
+    <h1 class="grid-item">Subtotal</h1>
+</div>
+<hr class="header-hr">
+<div class="grid-container">
+    <% if (user) { %>
+        <% for (let i = 0; i < items.length; i++) { %>
+            <span class="rel-container grid-item">
+                <img src="/images/products/<%= items[i].image[0] %>" alt="" class="item-img">
+                <span><%= items[i].title %></span>
+            </span>
+            <span class="grid-item">$<%= items[i].price %></span>
+            <span class="grid-item"><em class="fas fa-minus margin"></em><%= user.cart[i].qty %><em class="fas fa-plus margin"></em></span>
+            <span class="grid-item rel-container">$<%= subTotals[i] %><a href="" class="remove-btn">Remove</a></span>
+            <% }} %>
+</div>
+<hr class="footer-hr">
+
+<div class="sub-btns">
+    <a href="/products" class="continue-shopping">Continue Shopping</a>
+    <a href="" class="clear-cart">Clear Shopping Cart</a>
+    <span></span>
+    <div class="checkout-container">
+        <div class="checkout-info">
+            <% if (user) { %>
+                <h4 class="checkout-item">Subtotal:</h4>
+                <h4 class="checkout-item">$<%= totalPrice %></h4>
+                <span class="checkout-item">Shipping:</span>
+                <span class="checkout-item">$4.99</span>
+            <% } %>
         </div>
-        <hr class="cart-hr">
-        <!-- List Products -->
-        <div class="products-container">
-        <% if (user) { %>
-            <% for (let i = 0; i < items.length; i++) { %>
-                <div class="product-info">
-                    <div class="img-container">
-                        <img src="/images/products/<%= items[i].image[0] %>" alt="" class="item-img">
-                        <span class="img-title"><%= items[i].title %></span>
-                    </div>
-                    <span class="item-price">$<%= items[i].price %></span>
-                    <span class="quantity"><%= user.cart[i].qty %></span>
-                    <span class="">$<%= subTotals[i] %></span>
-                </div>
-        <% }} %>
+        <hr id="checkout-hr">
+        <div id="price-container">
+            <h3 id="price-title">Order Total:</h3>
+            <h3 id="total-price">$<%= totalPrice + 4.99 %></h3>
         </div>
-        <hr class="cart-hr">
+        <a href="" id="checkout-btn">Checkout</a>
     </div>
-    
-    
+</div>
+
+
 <%- include('../partials/footer.ejs') %>
 </div>
 </body>

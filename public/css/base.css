@@ -10,14 +10,16 @@
   --secondary-clr: #233a28;
   --tertiary-clr: #bba79c;
   --dark-btn: #233a28;
+  --flat-black: rgb(32, 32, 32);
   --nav-chars: #fbfcff;
   --price-chars: rgba(165, 42, 42, 0.774);
+  --line-clr: rgb(138, 138, 138);
   --nav-height: 80px;
   --footer-height: 60px;
 }
 a {
   text-decoration: none;
-  color: black;
+  color: var(--flat-black);
 }
 .page-container {
   position: relative;
@@ -51,7 +53,7 @@ Header/Navigation
   font-size: 1.2rem;
 }
 .nav-btn:hover {
-  box-shadow: 0px 2px white;
+  box-shadow: 0px 2px var(--nav-chars);
 }
 #menu-icon {
   display: none;
@@ -60,7 +62,7 @@ Header/Navigation
   font-size: 2rem;
 }
 .nav-spans {
-  flex-basis: 250px;
+  flex-basis: 200px;
 }
 
 /* Shopping Cart */
@@ -76,7 +78,8 @@ Header/Navigation
   align-items: center;
   top: -15px;
   right: -15px;
-  background-color: tan;
+  background-color: var(--flat-black);
+  color: var(--nav-chars);
   width: 30px;
   height: 25px;
   border-radius: 50%;
@@ -98,7 +101,7 @@ Header/Navigation
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--nav-clr);
+  background-color: var(--flat-black);
   color: var(--nav-chars);
 }
 #copyright-tag {
