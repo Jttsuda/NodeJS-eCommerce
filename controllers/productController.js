@@ -103,10 +103,32 @@ const cart_view = async (req, res) => {
 }
 
 
+// Remove Product From Cart
+const item_remove = async (req, res) => {
+    try {
+        const { objectid } = req.body;
+        const user = res.locals.user;
+        for (let i = 0; i < user.cart.length; i++) {
+            if (user.cart[i]._id.toString() === objectid) {
+                const userCart = user.cart.filter(item => item._id.toString() !== objectid);
+                await User.findByIdAndUpdate(user._id, { cart: userCart });
+                return res.json({ redirect: '/cart' });
+            } 
+        }
+ 
+        res.json({ redirect: '/cart' });
+    } catch (err) {
+        console.log(err);
+        res.status(404).render('404');
+    }
+}
+
+
 module.exports = { 
     product_index, 
     product_details, 
     product_delete, 
     add_product,
-    cart_view
+    cart_view,
+    item_remove
 }

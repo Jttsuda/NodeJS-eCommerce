@@ -20,8 +20,10 @@
             </span>
             <span class="grid-item">$<%= items[i].price %></span>
             <span class="grid-item"><em class="fas fa-minus margin"></em><%= user.cart[i].qty %><em class="fas fa-plus margin"></em></span>
-            <span class="grid-item rel-container">$<%= subTotals[i] %><a href="" class="remove-btn">Remove</a></span>
-            <% }} %>
+            <span class="grid-item rel-container">$<%= subTotals[i] %>
+                <a href="#" class="remove-btn" data-objectid="<%= user.cart[i]._id %>">Remove</a>
+            </span>
+    <% }} %>
 </div>
 <hr class="footer-hr">
 
@@ -50,5 +52,22 @@
 
 <%- include('../partials/footer.ejs') %>
 </div>
+<script>
+    // Delete Product
+        const deleteProducts = document.querySelectorAll('.remove-btn');
+        deleteProducts.forEach( removeBtn => removeBtn.addEventListener('click', (e) => {
+            const { objectid } = removeBtn.dataset;
+            fetch(`/cart`, {
+                method: 'DELETE',
+                body: JSON.stringify({ objectid }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                window.location.href = data.redirect
+            })
+            .catch((err) => console.log(err));
+        }))
+</script>
 </body>
 </html>
