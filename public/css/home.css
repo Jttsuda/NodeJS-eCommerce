@@ -106,24 +106,28 @@
 Media Queries
 ================*/
 @media only screen and (max-width: 937px) {
-  #wood-table {
+  #company-img {
     display: none;
   }
 }
 
 @media only screen and (max-width: 900px), (max-height: 600px) {
+  .small-subtext,
+  .headline-img,
+  #prefooter {
+    display: none;
+  }
+  .custom-furniture,
+  .boxes {
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  .front-headlines,
+  #custom-div {
+    height: fit-content;
+  }
   .boxes {
     width: 90vw;
-    margin: auto;
-    margin-bottom: 10px;
-  }
-  .custom-furniture {
-    margin-bottom: 10px;
-    margin: auto;
-  }
-  .front-headlines {
-    align-items: flex-start;
-    height: fit-content;
   }
   .headline {
     line-height: 2.5rem;
@@ -131,28 +135,9 @@ Media Queries
   .headline-text {
     margin-top: 40px;
   }
-  .small-subtext {
-    display: none;
-  }
-  .headline-img {
-    display: none;
-  }
-  .fit-content {
-    flex-direction: column;
-  }
-  .remove-padding {
-    padding-top: 0px;
-  }
   #box-container {
     flex-direction: column;
     padding-bottom: calc(var(--footer-height) + 40px);
-  }
-  #custom-div {
-    height: max-content;
-  }
-  #prefooter {
-    display: none;
-    position: absolute;
   }
   #est-div {
     text-align: center;

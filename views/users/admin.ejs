@@ -1,5 +1,4 @@
 <%- include('../partials/header.ejs') %>
-<link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/css/users/admin.css">
 
 <div class="page-container">
@@ -30,7 +29,7 @@
         <!-- User Info -->
         <div class="user-container">
             <h1 class="admin-title">User Info</h1>
-            <div class="field-names">
+            <div class="user-names">
                 <h3 class="user-info">Username / Admin</h3>
             </div>
             <hr>
@@ -39,7 +38,7 @@
             </div>
             <div>
             <% users.forEach(user => { %>
-                <div class="field-names">
+                <div class="user-names">
                     <h4 class="admin-toggle"><%= user.username %> / <%= user.admin %></h4>
                     <a href="/admin/<%= user.id %>" class="toggle-btn"><h6>Toggle</h6></a>
                 </div>

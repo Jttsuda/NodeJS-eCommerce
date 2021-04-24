@@ -60,6 +60,9 @@ Header/Navigation
   margin-right: 40px;
   font-size: 2rem;
 }
+#auth-btn-container {
+  display: flex;
+}
 
 /* Shopping Cart */
 #shopping-cart {
@@ -113,9 +116,7 @@ Header/Navigation
 Media Queries
 ================*/
 @media only screen and (max-width: 950px) {
-  .nav-btn {
-    display: none;
-  }
+  .nav-btn,
   #shopping-cart {
     display: none;
   }

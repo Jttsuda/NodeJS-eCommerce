@@ -1,9 +1,7 @@
-<!-- Navigation -->
 <nav id="nav-bar">
     <div id="navigation">
-        <a href="/">
-            <img src="/images/companytitle.png" alt="" id="company-logo">
-        </a>
+
+        <a href="/"><img src="/images/companytitle.png" alt="" id="company-logo"></a>
 
         <div>
             <% if (user && user.admin === true) { %>
@@ -15,14 +13,14 @@
             <a href="/cart" class="nav-btn">Checkout</a>
         </div>
 
-        <div style="display: flex;">
+        <!-- Login/Logout, Cart, and Menu Icon -->
+        <div id="auth-btn-container">
             <a href=""><em class="fas fa-bars" id="menu-icon"></em></a>
             <% if (user) { %>
                 <a href="/logout" class="nav-btn">Logout</a>
                 <% } else { %>
                 <a href="/login" class="nav-btn">Login/Register</a>
             <% } %>
-            <!-- Shopping Cart -->
             <div id="shopping-cart">
                 <a href="/cart"><em class="fas fa-shopping-cart"></em></a>
                 <% if (user) { %>
@@ -34,5 +32,4 @@
         </div>
 
     </div>
-
 </nav>

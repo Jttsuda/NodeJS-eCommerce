@@ -21,6 +21,10 @@
   margin-bottom: 60px;
   max-width: 1400px;
 }
+.black-and-white {
+  background-color: var(--flat-black);
+  color: var(--nav-chars);
+}
 
 /* Images and Remove Btn */
 .rel-container {
@@ -37,8 +41,6 @@
   font-size: 1rem;
   top: -10px;
   right: -70px;
-  background-color: var(--flat-black);
-  color: var(--nav-chars);
   padding: 10px 15px;
   border-radius: 3px;
 }
@@ -60,15 +62,11 @@ Below Products
   margin: auto;
 }
 .continue-shopping {
-  background-color: var(--flat-black);
-  color: var(--nav-chars);
   padding: 10px 15px;
   border-radius: 3px;
   width: fit-content;
 }
 .clear-cart {
-  background-color: var(--flat-black);
-  color: var(--nav-chars);
   padding: 10px 15px;
   border-radius: 3px;
   width: fit-content;

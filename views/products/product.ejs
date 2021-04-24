@@ -1,8 +1,8 @@
 <%- include('../partials/header.ejs') %>
 <link rel="stylesheet" href="/css/products/product.css">
-
 <div class="page-container">
-    <%- include('../partials/nav.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
     <div class="product-container">
         <div>
             <img src="/images/products/<%= product.image[1] %>" alt=""class="img-container">
@@ -39,11 +39,9 @@
             </div>
         </div>
     </div>
-</div>
-
+    
 <%- include('../partials/footer.ejs') %>
-
-
+</div>
 <script>
     // Delete Product
     const deleteProduct = document.getElementById('delete-btn');
@@ -63,7 +61,6 @@
 
     // ADD PRODUCT
     const addProduct = document.getElementById('add-btn');
-
     addProduct.addEventListener('click', async (e) => {
         const quantity = document.getElementById('product-qty').textContent;
         const productId = addProduct.dataset.add;

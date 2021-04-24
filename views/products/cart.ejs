@@ -3,7 +3,6 @@
 <div class="page-container">
 <%- include('../partials/nav.ejs') %>
 
-
 <div class="grid-container margin-top">
     <h1 class="grid-item">Item</h1>
     <h1 class="grid-item">Price</h1>
@@ -21,15 +20,16 @@
             <span class="grid-item">$<%= items[i].price %></span>
             <span class="grid-item"><em class="fas fa-minus margin"></em><%= user.cart[i].qty %><em class="fas fa-plus margin"></em></span>
             <span class="grid-item rel-container">$<%= subTotals[i] %>
-                <a href="#" class="remove-btn" data-objectid="<%= user.cart[i]._id %>">Remove</a>
+                <a href="#" class="remove-btn black-and-white" 
+                data-objectid="<%= user.cart[i]._id %>">Remove</a>
             </span>
     <% }} %>
 </div>
 <hr class="footer-hr">
 
 <div class="sub-btns">
-    <a href="/products" class="continue-shopping">Continue Shopping</a>
-    <a href="" class="clear-cart">Clear Shopping Cart</a>
+    <a href="/products" class="continue-shopping black-and-white">Continue Shopping</a>
+    <a href="" class="clear-cart black-and-white">Clear Shopping Cart</a>
     <span></span>
     <div class="checkout-container">
         <div class="checkout-info">

@@ -1,8 +1,9 @@
 <%- include('../partials/header.ejs') %>
 <link rel="stylesheet" href="/css/products/products.css">
 <div class="page-container">
-    <%- include('../partials/nav.ejs') %>
+<%- include('../partials/nav.ejs') %>
     <div id="main-container">
+
         <div class="filters-container">
             <input type="text" placeholder="Search">
             <h2 id="category-title">Category</h2>
@@ -13,6 +14,7 @@
             <h3 class="category-filter">Dining</h3>
             <h3 class="category-filter">Kitchen</h3>
         </div>
+
         <div>
             <div class="top-line">
                 <hr id="hr-line">
@@ -25,12 +27,8 @@
                             <div class="product-info">
                                 <img src="/images/products/<%= product.image[0] %>" alt="" class="product-img">
                                 <div class="title-price">
-                                    <h3 class="product-title">
-                                        <%= product.title %>
-                                    </h3>
-                                    <h3 class="product-price">
-                                        $<%= product.price %>
-                                    </h3>
+                                    <h3 class="product-title"><%= product.title %></h3>
+                                    <h3 class="product-price">$<%= product.price %></h3>
                                 </div>
                             </div>
                         </a>
@@ -40,8 +38,8 @@
                 <% } %>
             </div>
         </div>
+
     </div>
-    
 <%- include('../partials/footer.ejs') %>
 </div>
 </body>

@@ -1,53 +1,19 @@
-#controls-container {
-  display: flex;
-  justify-content: center;
-}
-
-/* User Info */
-.user-container {
-  margin-top: 100px;
-  max-height: 300px;
-  overflow: auto;
-  border-radius: 5px;
-  background-color: var(--nav-clr);
+* {
   color: var(--nav-chars);
-  margin-left: 40px;
 }
-.admin-title {
-  display: block;
-  margin-top: 10px;
-  text-align: center;
-}
-.field-names {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-.admin-toggle {
-  width: 100%;
-  margin-left: 20px;
-}
-.user-info {
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  padding: 5px 30px;
-}
-.toggle-btn {
-  display: flex;
-  align-items: center;
-  padding: 5px 10px;
-  background-color: var(--dark-btn);
-  color: var(--nav-chars);
-  border-radius: 3px;
-  margin-right: 20px;
-}
+#controls-container,
+.user-names,
+.user-info,
+.toggle-btn,
 .center {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-/* Add Product Styles */
+/*=============
+  Add Product
+==============*/
 textarea {
   resize: none;
   padding: 5px;
@@ -58,8 +24,8 @@ textarea {
   width: min-content;
   border-radius: 5px;
   background-color: var(--nav-clr);
-  color: var(--nav-chars);
   text-align: right;
+  border: 7px solid var(--dark-btn);
 }
 .add-product-title {
   margin-top: 10px;
@@ -87,12 +53,44 @@ textarea {
   font-size: 1rem;
   padding: 5px;
   background-color: var(--dark-btn);
-  color: var(--nav-chars);
   width: 100%;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   height: 60px;
   border: 0px;
+}
+
+/*===========
+  User Info
+============*/
+.user-container {
+  overflow: auto;
+  background-color: var(--nav-clr);
+  max-height: 300px;
+  border-radius: 5px;
+  margin: 40px;
+  padding-bottom: 40px;
+  border: 7px solid var(--dark-btn);
+}
+.admin-title {
+  display: block;
+  margin: 10px;
+  text-align: center;
+}
+.user-names {
+  margin-top: 10px;
+}
+.admin-toggle {
+  width: 100%;
+  margin-left: 20px;
+}
+.user-info {
+  margin: auto;
+  padding: 5px 30px;
+}
+.toggle-btn {
+  padding: 5px 10px;
+  background-color: var(--dark-btn);
+  border-radius: 3px;
+  margin-right: 20px;
 }
 
 /*================
