@@ -15,7 +15,7 @@
   --line-clr: rgb(138, 138, 138);
   --nav-height: 80px;
   --footer-height: 60px;
-  --margin-top: 40px;
+  --margin-bottom: 40px;
 }
 a {
   text-decoration: none;
@@ -32,6 +32,7 @@ Header/Navigation
 #nav-bar {
   width: 100%;
   background-color: var(--nav-clr);
+  margin-bottom: var(--margin-bottom);
 }
 #navigation {
   display: flex;

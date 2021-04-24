@@ -3,13 +3,13 @@
 <div class="page-container">
 <%- include('../partials/nav.ejs') %>
 
-<div class="grid-container margin-top">
+<div class="grid-container titles">
     <h1 class="grid-item">Item</h1>
     <h1 class="grid-item">Price</h1>
     <h1 class="grid-item">Quantity</h1>
     <h1 class="grid-item">Subtotal</h1>
 </div>
-<hr class="header-hr">
+<hr class="cart-hr">
 <div class="grid-container">
     <% if (user) { %>
         <% for (let i = 0; i < items.length; i++) { %>
@@ -25,7 +25,7 @@
             </span>
     <% }} %>
 </div>
-<hr class="footer-hr">
+<hr class="cart-hr">
 
 <div class="sub-btns">
     <a href="/products" class="continue-shopping black-and-white">Continue Shopping</a>
@@ -40,7 +40,7 @@
                 <span class="checkout-item">$4.99</span>
             <% } %>
         </div>
-        <hr id="checkout-hr">
+        <hr id="cart-hr">
         <div id="price-container">
             <h3 id="price-title">Order Total:</h3>
             <h3 id="total-price">$<%= (totalPrice + 4.99).toFixed(2) %></h3>

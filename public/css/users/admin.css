@@ -19,7 +19,6 @@ textarea {
   padding: 5px;
 }
 .add-product-container {
-  margin-top: 100px;
   height: fit-content;
   width: min-content;
   border-radius: 5px;
@@ -28,7 +27,7 @@ textarea {
   border: 7px solid var(--dark-btn);
 }
 .add-product-title {
-  margin-top: 10px;
+  margin: 10px;
   text-align: center;
 }
 .margin {

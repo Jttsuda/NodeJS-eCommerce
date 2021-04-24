@@ -5,8 +5,9 @@
   max-width: 1200px;
 }
 .landing-site {
-  height: calc(100vh - var(--nav-height));
+  height: calc(100vh - var(--nav-height) - var(--margin-bottom));
   align-items: center;
+  transform: translateY(-40px);
 }
 .fit-content {
   height: fit-content;
