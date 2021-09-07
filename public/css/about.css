@@ -1,0 +1,40 @@
+#about-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+#content-container {
+  display: flex;
+  max-width: 1200px;
+}
+#about-img {
+  margin: 0px 20px;
+}
+#about-content {
+  margin: 20px;
+}
+.underline {
+  height: 4px;
+  width: 100px;
+  background-color: var(--nav-clr);
+}
+#about-subtext {
+  margin-top: 20px;
+  font-weight: 100;
+  line-height: 2.5rem;
+}
+
+/*================
+Media Queries
+================*/
+@media only screen and (max-width: 975px) {
+  #about-container {
+    display: block;
+    margin-top: 20px;
+  }
+  #about-img {
+    width: 300px;
+    height: 300px;
+    align-self: center;
+  }
+}

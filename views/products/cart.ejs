@@ -1,0 +1,75 @@
+<%- include('../partials/header.ejs') %>
+<link rel="stylesheet" href="/css/products/cart.css">
+<div class="page-container">
+<%- include('../partials/nav.ejs') %>
+
+<div class="grid-container titles">
+    <h1 class="grid-item">Item</h1>
+    <h1 class="grid-item">Price</h1>
+    <h1 class="grid-item">Quantity</h1>
+    <h1 class="grid-item">Subtotal</h1>
+</div>
+<hr class="cart-hr">
+<div class="grid-container">
+    <% if (user) { %>
+        <% for (let i = 0; i < items.length; i++) { %>
+            <span class="rel-container grid-item">
+                <img src="/images/products/<%= items[i].image[0] %>" alt="" class="item-img">
+                <span><%= items[i].title %></span>
+            </span>
+            <span class="grid-item">$<%= items[i].price %></span>
+            <span class="grid-item"><em class="fas fa-minus margin"></em><%= user.cart[i].qty %><em class="fas fa-plus margin"></em></span>
+            <span class="grid-item rel-container">$<%= subTotals[i] %>
+                <a href="#" class="remove-btn black-and-white" 
+                data-objectid="<%= user.cart[i]._id %>">Remove</a>
+            </span>
+    <% }} %>
+</div>
+<hr class="cart-hr">
+
+<div class="sub-btns">
+    <a href="/products" class="continue-shopping black-and-white">Continue Shopping</a>
+    <a href="" class="clear-cart black-and-white">Clear Shopping Cart</a>
+    <span></span>
+    <div class="checkout-container">
+        <div class="checkout-info">
+            <% if (user) { %>
+                <h4 class="checkout-item">Subtotal:</h4>
+                <h4 class="checkout-item">$<%= totalPrice.toFixed(2) %></h4>
+                <span class="checkout-item">Shipping:</span>
+                <span class="checkout-item">$4.99</span>
+            <% } %>
+        </div>
+        <hr id="cart-hr">
+        <div id="price-container">
+            <h3 id="price-title">Order Total:</h3>
+            <% if (user) { %>
+                <h3 id="total-price">$<%= (totalPrice + 4.99).toFixed(2) %></h3>
+            <% } %>
+        </div>
+        <a href="" id="checkout-btn">Checkout</a>
+    </div>
+</div>
+
+
+<%- include('../partials/footer.ejs') %>
+</div>
+<script>
+    // Delete Product
+        const deleteProducts = document.querySelectorAll('.remove-btn');
+        deleteProducts.forEach( removeBtn => removeBtn.addEventListener('click', (e) => {
+            const { objectid } = removeBtn.dataset;
+            fetch(`/cart`, {
+                method: 'DELETE',
+                body: JSON.stringify({ objectid }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                window.location.href = data.redirect
+            })
+            .catch((err) => console.log(err));
+        }))
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<%- include('../partials/header.ejs') %>
+<link rel="stylesheet" href="/css/products/product.css">
+<div class="page-container">
+<%- include('../partials/nav.ejs') %>
+
+    <div class="product-container">
+        <div>
+            <img src="/images/products/<%= product.image[1] %>" alt=""class="img-container">
+            <% if (user && user.admin) { %>
+                <a href="#" id="delete-btn" data-delete="<%= product.id %>">Delete</a>
+            <% } %>
+        </div>
+        <div class="product-info">
+            <h1><%= product.title %></h1>
+            <h2 class="product-price">$<%= product.price %></h2>
+            <h3 class="product-desc"><%= product.desc %></h3>
+            <div class="shipping-info">
+                <div>
+                    <h3 class="current-info"><strong>Available:</strong></h3>
+                    <h3 class="current-info"><strong>SKU:</strong></h3>
+                </div>
+                <div class="product-info">
+                    <h3 class="current-info">In Stock</h3>
+                    <h3 class="current-info"><%= product.id %></h3>
+                </div>
+            </div>
+            <hr>
+            <!-- Qty -->
+            <div class="addtocart-container">
+                <div class="qty-container">
+                    <em class="fas fa-minus qty-icon"></em>
+                    <span id="product-qty">1</span>
+                    <em class="fas fa-plus qty-icon"></em>
+                </div>
+                <div>
+                    <a href="#" id="add-btn" 
+                    data-add="<%= product._id %>" class="add-to-cart">Add To Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<%- include('../partials/footer.ejs') %>
+</div>
+<script>
+    // Delete Product
+    const deleteProduct = document.getElementById('delete-btn');
+    if (deleteProduct){
+        deleteProduct.addEventListener('click', (e) => {
+            const url = `/products/${deleteProduct.dataset.delete}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                window.location.href = data.redirect
+            })
+            .catch((err) => console.log(err));
+        })
+    }
+
+    // ADD PRODUCT
+    const addProduct = document.getElementById('add-btn');
+    addProduct.addEventListener('click', async (e) => {
+        const quantity = document.getElementById('product-qty').textContent;
+        const productId = addProduct.dataset.add;
+        const url = `/products/${addProduct.dataset.add}`;
+        const res = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({ productId, quantity }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+        const data = await res.json();
+        if (data.msg) {
+            console.log(data.msg);
+        }
+        if (data) {
+            location.assign(data.redirect);
+        }
+    })
+
+</script>
+</body>
+</html>

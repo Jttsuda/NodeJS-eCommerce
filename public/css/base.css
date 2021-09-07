@@ -1,0 +1,127 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+:root {
+  --nav-clr: #928370;
+  --primary-clr: #fbf8f4;
+  --secondary-clr: #7f6e57;
+  --dark-btn: #40372c;
+  --flat-black: rgb(32, 32, 32);
+  --nav-chars: #fbfcff;
+  --price-chars: rgba(165, 42, 42, 0.774);
+  --line-clr: rgb(138, 138, 138);
+  --nav-height: 80px;
+  --footer-height: 60px;
+  --margin-bottom: 40px;
+}
+a {
+  text-decoration: none;
+  color: var(--flat-black);
+}
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+/*================
+Header/Navigation
+================*/
+#nav-bar {
+  width: 100%;
+  background-color: var(--nav-clr);
+  margin-bottom: var(--margin-bottom);
+}
+#navigation {
+  display: flex;
+  height: var(--nav-height);
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+}
+#company-logo {
+  width: 200px;
+  margin-left: 40px;
+}
+.nav-btn {
+  color: var(--nav-chars);
+  margin-right: 20px;
+  padding: 5px;
+  font-size: 1.2rem;
+}
+.nav-btn:hover {
+  box-shadow: 0px 2px var(--nav-chars);
+}
+#menu-icon {
+  display: none;
+  color: var(--nav-chars);
+  margin-right: 40px;
+  font-size: 2rem;
+}
+#auth-btn-container {
+  display: flex;
+}
+
+/* Shopping Cart */
+#shopping-cart {
+  position: relative;
+  font-size: 1.5rem;
+  margin-right: 40px;
+}
+.item-qty {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -15px;
+  right: -15px;
+  background-color: var(--flat-black);
+  color: var(--nav-chars);
+  width: 30px;
+  height: 25px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.fa-shopping-cart {
+  color: var(--nav-chars);
+}
+
+/*================
+    Footer
+================*/
+#footer-bar {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: var(--footer-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--flat-black);
+  color: var(--nav-chars);
+}
+#copyright-tag {
+  font-size: 1rem;
+  font-weight: 100;
+}
+.company-title {
+  color: var(--nav-clr);
+  margin-right: 5px;
+}
+
+/*================
+Media Queries
+================*/
+@media only screen and (max-width: 950px) {
+  .nav-btn,
+  #shopping-cart {
+    display: none;
+  }
+  #menu-icon {
+    display: inline-block;
+  }
+}

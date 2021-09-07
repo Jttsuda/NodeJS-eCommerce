@@ -1,0 +1,81 @@
+<%- include('../partials/header.ejs') %>
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/users/authentication.css">
+
+<div class="page-container">
+    <%- include('../partials/nav.ejs') %>
+    <div id="auth-container">
+        <form id="login-container">
+            <div id="login-register-div">
+                <div>
+                    <a href="/login">
+                        <div class="login-register" style="color: white;">Sign In</div>
+                    </a>
+                    <hr class="account-hr">
+                </div>
+                <div>
+                    <a href="">
+                        <div class="login-register">Register</div>
+                    </a>
+                    <hr class="account-hr selected">
+                </div>
+            </div>
+            <div class="login-pass-container">
+                <span class="login-icon-box">
+                    <em class="far fa-address-card"></em>
+                </span>
+                <input type="text" placeholder="yours@example.com" class="user-pass" name="username">
+            </div>
+            <div class="login-pass-container">
+                <span class="login-icon-box">
+                    <em class="fas fa-lock"></em>
+                </span>
+                <input type="password" placeholder="your password" class="user-pass" name="password">
+            </div>
+            <!-- Register BTN -->
+            <input type="submit" id="login-btn" value="REGISTER">
+        </form>
+        <div class="username error"></div>
+        <div class="password error"></div>
+    </div>
+
+<%- include('../partials/footer.ejs') %>
+</div>
+<script>
+    const form = document.querySelector('form');
+    const usernameError = document.querySelector('.username.error');
+    const passwordError = document.querySelector('.password.error');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        // Reset Errors
+        usernameError.textContent = '';
+        passwordError.textContent = '';
+
+        // get values
+        const username = form.username.value;
+        const password = form.password.value;
+        try {
+            const res = await fetch('/register', {
+                method: 'POST',
+                body: JSON.stringify({ username, password }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await res.json();
+            // Set Errors
+            if (data.errors) {
+                usernameError.textContent = data.errors.username;
+                passwordError.textContent = data.errors.password;
+            }
+            // Success and Redirect
+            if (data.user) {
+                location.assign('/');
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    });
+</script>
+</body>
+</html>
