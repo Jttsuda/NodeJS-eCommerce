@@ -34,7 +34,7 @@
                 </div>
                 <div>
                     <a href="#" id="add-btn" 
-                    data-add="<%= product._id %>" class="add-to-cart">Add To Cart</a>
+                    data-add="<%= product.id %>" class="add-to-cart">Add To Cart</a>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
     addProduct.addEventListener('click', async (e) => {
         const quantity = document.getElementById('product-qty').textContent;
         const productId = addProduct.dataset.add;
-        const url = `/products/${addProduct.dataset.add}`;
+        const url = `/products/${productId}`;
         const res = await fetch(url, {
             method: 'POST',
             body: JSON.stringify({ productId, quantity }),
