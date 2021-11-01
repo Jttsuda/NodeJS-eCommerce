@@ -30,20 +30,25 @@ textarea {
   margin: 10px;
   text-align: center;
 }
+.align-center {
+  text-align: center;
+}
 .margin {
+  color: var(--flat-black);
   outline: none;
   display: inline-block;
   margin: 10px;
   padding: 5px;
 }
 .margin-right {
+  color: var(--flat-black);
   margin-right: 30px;
-}
-.align-center {
-  text-align: center;
 }
 .underline {
   text-decoration: underline;
+}
+.margin-bottom {
+  margin-bottom: 10px;
 }
 
 /* Upload Product Button */

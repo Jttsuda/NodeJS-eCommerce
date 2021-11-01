@@ -1,7 +1,6 @@
 #about-container {
   display: flex;
   justify-content: center;
-  padding-top: 100px;
 }
 #content-container {
   display: flex;
