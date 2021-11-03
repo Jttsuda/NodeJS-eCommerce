@@ -5,8 +5,10 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 :root {
-  --nav-clr: #928370;
-  --primary-clr: #fbf8f4;
+  /* --nav-clr: #928370; */
+  --nav-clr: #36332d;
+  /* --primary-clr: #fbf8f4; */
+  --primary-clr: #c4b9a9;
   --secondary-clr: #7f6e57;
   --dark-btn: #40372c;
   --flat-black: rgb(32, 32, 32);
