@@ -2,8 +2,7 @@ const jwt = require('jsonwebtoken');
 const clsfd = require('../classified');
 const User = require('../models/user');
 
-
-// Authorization
+// Require a JWT (Logged in)
 const requireAuth = (req, res, next) => {
     const token = req.cookies.jwt;
     // Verifying Token
@@ -22,8 +21,7 @@ const requireAuth = (req, res, next) => {
     }
 };
 
-
-// Getting User Info
+// Get User Info
 const checkUser = (req, res, next) => {
     const token = req.cookies.jwt;
     // Verifying Token
@@ -35,7 +33,7 @@ const checkUser = (req, res, next) => {
                 next();
             } else {
                 let user = await User.findById(decodedToken.id);
-                // Check Cart Total QTY
+                // Get Cart Total QTY
                 let totalQty = 0;
                 for (let i = 0; i < user.cart.length; i++) {
                     totalQty += user.cart[i].qty;
@@ -51,7 +49,6 @@ const checkUser = (req, res, next) => {
         next();
     }
 };
-
 
 
 module.exports = { requireAuth, checkUser };

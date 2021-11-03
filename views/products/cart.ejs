@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="/css/products/cart.css">
 <div class="page-container">
 <%- include('../partials/nav.ejs') %>
-
 <div class="grid-container titles">
     <h1 class="grid-item">Item</h1>
     <h1 class="grid-item">Price</h1>
@@ -26,7 +25,6 @@
     <% }} %>
 </div>
 <hr class="cart-hr">
-
 <div class="sub-btns">
     <a href="/products" class="continue-shopping black-and-white">Continue Shopping</a>
     <a href="" class="clear-cart black-and-white">Clear Shopping Cart</a>
@@ -50,12 +48,10 @@
         <a href="" id="checkout-btn">Checkout</a>
     </div>
 </div>
-
-
 <%- include('../partials/footer.ejs') %>
 </div>
 <script>
-    // Delete Product
+    //Remove Product
         const deleteProducts = document.querySelectorAll('.remove-btn');
         deleteProducts.forEach( removeBtn => removeBtn.addEventListener('click', (e) => {
             const { objectid } = removeBtn.dataset;

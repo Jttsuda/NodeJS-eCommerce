@@ -45,5 +45,5 @@ app.get('/cart', cart_view);
 app.delete('/cart', item_remove);
 
 
-// 404 Page
+// 404 Not Found
 app.use((req, res) => res.status(404).render('404'));

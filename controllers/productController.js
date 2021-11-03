@@ -93,13 +93,11 @@ const cart_view = async (req, res) => {
             totalPrice += Number(subTotal);
             subTotal = 0;
         }
-
         res.locals.items = items;
         res.locals.subTotals = subTotals;
         res.locals.totalPrice = totalPrice;
     }
     res.render('products/cart');
-
 }
 
 
@@ -115,7 +113,6 @@ const item_remove = async (req, res) => {
                 return res.json({ redirect: '/cart' });
             } 
         }
- 
         res.json({ redirect: '/cart' });
     } catch (err) {
         console.log(err);
