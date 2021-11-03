@@ -1,8 +1,6 @@
 <nav id="nav-bar">
     <div id="navigation">
-
         <a href="/"><img src="/images/companytitle.png" alt="" id="company-logo"></a>
-
         <div>
             <% if (user && user.admin === true) { %>
                 <a href="/admin" class="nav-btn">Admin</a>
@@ -12,7 +10,6 @@
             <a href="/products" class="nav-btn">Products</a>
             <a href="/cart" class="nav-btn">Checkout</a>
         </div>
-
         <!-- Login/Logout, Cart, and Menu Icon -->
         <div id="auth-btn-container">
             <a href=""><em class="fas fa-bars" id="menu-icon"></em></a>
@@ -22,14 +19,15 @@
                 <a href="/login" class="nav-btn">Login/Register</a>
             <% } %>
             <div id="shopping-cart">
-                <a href="/cart"><em class="fas fa-shopping-cart"></em></a>
-                <% if (user) { %>
-                    <div class="item-qty"><%= totalQty %></div>
-                <% } else { %>
-                    <div class="item-qty">0</div>
-                <% } %>
+                <a href="/cart">
+                    <em class="fas fa-shopping-cart"></em>
+                    <% if (user) { %>
+                        <div class="item-qty noselect"><%= totalQty %></div>
+                    <% } else { %>
+                        <div class="item-qty noselect">0</div>
+                    <% } %>
+                </a>
             </div>
         </div>
-
     </div>
 </nav>
