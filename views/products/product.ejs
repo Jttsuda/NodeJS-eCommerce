@@ -26,11 +26,11 @@
             </div>
             <hr>
             <!-- Qty -->
-            <div class="addtocart-container">
+            <div class="addtocart-container noselect">
                 <div class="qty-container">
-                    <em class="fas fa-minus qty-icon"></em>
+                    <em class="fas fa-minus qty-icon" id="minus-product"></em>
                     <span id="product-qty">1</span>
-                    <em class="fas fa-plus qty-icon"></em>
+                    <em class="fas fa-plus qty-icon" id="add-product"></em>
                 </div>
                 <div>
                     <a href="#" id="add-btn" 
@@ -58,6 +58,21 @@
             .catch((err) => console.log(err));
         })
     }
+
+    // CHANGE QTY
+    const minusButton = document.getElementById('minus-product')
+    const addButton = document.getElementById('add-product')
+    const productQty = document.getElementById('product-qty')
+    minusButton.addEventListener('click', (e) => {
+        if (productQty.textContent > 1){
+            let productVal = productQty.textContent;
+            productQty.textContent = Number(productVal) - 1;
+        }
+    })
+    addButton.addEventListener('click', (e) => {
+        let productVal = productQty.textContent;
+        productQty.textContent = Number(productVal) + 1;
+    })
 
     // ADD PRODUCT
     const addProduct = document.getElementById('add-btn');
