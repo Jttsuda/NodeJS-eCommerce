@@ -126,32 +126,25 @@ const change_quantity = async (req, res) => {
     try {
         const { incId = false, decId = false } = req.body;
         const user = res.locals.user;
-        let inventory = user.cart;
+        const inventory = user.cart;
         if (incId){
             for (let i = 0; i < inventory.length; i++) {
-                if (inventory[i].product == incId) {
-                    const newQty = inventory[i].qty + 1;
-                    inventory.splice(i, 1);
-                    await User.findByIdAndUpdate(user._id, { cart: [{ product: incId, qty: newQty }, ...inventory] });
+                if (inventory[i]._id == incId) {
+                    user.cart[i].qty = inventory[i].qty + 1;
+                    await user.save();
+                    break;
                 } 
             }
         }
         else if (decId){
             for (let i = 0; i < inventory.length; i++) {
-                if (inventory[i].product == decId) {
+                if (inventory[i]._id == decId) {
                     const newQty = inventory[i].qty - 1;
-                    inventory.splice(i, 1);
-                    if (newQty > 0){
-                        await User.findByIdAndUpdate(user._id, { cart: [{ product: decId, qty: newQty }, ...inventory] });
-                    }
-                    else {
-                        await User.findByIdAndUpdate(user._id, { cart: [...inventory] });
-                    }
+                    newQty > 0 ? user.cart[i].qty = newQty : user.cart.splice(i, 1);
+                    await user.save();
+                    break;
                 } 
             }
-        }
-        else {
-            throw "Unknown Action Performed.";
         }
         res.json({ redirect: '/cart' });
     }

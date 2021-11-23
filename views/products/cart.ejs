@@ -19,9 +19,9 @@
             <span class="grid-item">$<%= items[i].price %></span>
             <!-- INCREMENT/DECREMENT -->
             <span class="grid-item">
-                <em class="fas fa-minus margin" id="decrement-product" data-decid="<%= user.cart[i].product %>"></em>
+                <em class="fas fa-minus margin" id="decrement-product" data-decid="<%= user.cart[i]._id %>"></em>
                     <%= user.cart[i].qty %>
-                <em class="fas fa-plus margin" id="increment-product" data-incid="<%= user.cart[i].product %>"></em>
+                <em class="fas fa-plus margin" id="increment-product" data-incid="<%= user.cart[i]._id %>"></em>
             </span>
             <!-- SubTotal -->
             <span class="grid-item rel-container">$<%= subTotals[i] %>
