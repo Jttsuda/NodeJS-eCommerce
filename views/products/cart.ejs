@@ -17,7 +17,13 @@
                 <span><%= items[i].title %></span>
             </span>
             <span class="grid-item">$<%= items[i].price %></span>
-            <span class="grid-item"><em class="fas fa-minus margin"></em><%= user.cart[i].qty %><em class="fas fa-plus margin"></em></span>
+            <!-- INCREMENT/DECREMENT -->
+            <span class="grid-item">
+                <em class="fas fa-minus margin" id="decrement-product" data-decid="<%= user.cart[i].product %>"></em>
+                    <%= user.cart[i].qty %>
+                <em class="fas fa-plus margin" id="increment-product" data-incid="<%= user.cart[i].product %>"></em>
+            </span>
+            <!-- SubTotal -->
             <span class="grid-item rel-container">$<%= subTotals[i] %>
                 <a href="#" class="remove-btn black-and-white" 
                 data-objectid="<%= user.cart[i]._id %>">Remove</a>
@@ -51,21 +57,54 @@
 <%- include('../partials/footer.ejs') %>
 </div>
 <script>
-    //Remove Product
-        const deleteProducts = document.querySelectorAll('.remove-btn');
-        deleteProducts.forEach( removeBtn => removeBtn.addEventListener('click', (e) => {
-            const { objectid } = removeBtn.dataset;
-            fetch(`/cart`, {
-                method: 'DELETE',
-                body: JSON.stringify({ objectid }),
-                headers: { 'Content-Type': 'application/json' }
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                window.location.href = data.redirect
-            })
-            .catch((err) => console.log(err));
-        }))
+//Remove Product
+    const deleteProducts = document.querySelectorAll('.remove-btn');
+    deleteProducts.forEach( removeBtn => removeBtn.addEventListener('click', (e) => {
+        const { objectid } = removeBtn.dataset;
+        fetch(`/cart`, {
+            method: 'DELETE',
+            body: JSON.stringify({ objectid }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            window.location.href = data.redirect
+        })
+        .catch((err) => console.log(err));
+    }))
+
+//Increment Product
+    const addBtn = document.querySelectorAll('#increment-product');
+    addBtn.forEach( incBtn => incBtn.addEventListener('click', (e) => {
+        const incId = incBtn.dataset.incid;
+        console.log(incId);
+        fetch('/cart', {
+            method: 'POST',
+            body: JSON.stringify({ incId }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            window.location = data.redirect;
+        })
+        .catch((err) => console.log(err));
+    }))
+
+//Decrement Product
+const subBtn = document.querySelectorAll('#decrement-product');
+    subBtn.forEach( decBtn => decBtn.addEventListener('click', (e) => {
+        const decId = decBtn.dataset.decid;
+        fetch('/cart', {
+            method: 'POST',
+            body: JSON.stringify({ decId }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            window.location = data.redirect;
+        })
+        .catch((err) => console.log(err));
+    }))
 </script>
 </body>
 </html>

@@ -121,11 +121,52 @@ const item_remove = async (req, res) => {
 }
 
 
+// Increment or Decrement Product QTY in Cart
+const change_quantity = async (req, res) => {
+    try {
+        const { incId = false, decId = false } = req.body;
+        const user = res.locals.user;
+        let inventory = user.cart;
+        if (incId){
+            for (let i = 0; i < inventory.length; i++) {
+                if (inventory[i].product == incId) {
+                    const newQty = inventory[i].qty + 1;
+                    inventory.splice(i, 1);
+                    await User.findByIdAndUpdate(user._id, { cart: [{ product: incId, qty: newQty }, ...inventory] });
+                } 
+            }
+        }
+        else if (decId){
+            for (let i = 0; i < inventory.length; i++) {
+                if (inventory[i].product == decId) {
+                    const newQty = inventory[i].qty - 1;
+                    inventory.splice(i, 1);
+                    if (newQty > 0){
+                        await User.findByIdAndUpdate(user._id, { cart: [{ product: decId, qty: newQty }, ...inventory] });
+                    }
+                    else {
+                        await User.findByIdAndUpdate(user._id, { cart: [...inventory] });
+                    }
+                } 
+            }
+        }
+        else {
+            throw "Unknown Action Performed.";
+        }
+        res.json({ redirect: '/cart' });
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+
 module.exports = { 
     product_index, 
     product_details, 
     product_delete, 
     add_product,
     cart_view,
-    item_remove
+    item_remove,
+    change_quantity
 }

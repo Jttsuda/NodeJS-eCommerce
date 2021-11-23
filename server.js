@@ -5,7 +5,7 @@ const productsRoutes = require('./routes/productsRoutes');
 const userRoutes = require('./routes/userRoutes');
 const clsfd = require('./classified');
 const cookieParser = require('cookie-parser');
-const { cart_view, item_remove } = require('./controllers/productController');
+const { cart_view, item_remove, change_quantity } = require('./controllers/productController');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 // const multer = require('multer')
 
@@ -38,10 +38,11 @@ app.use(checkUser);
 
 // Routes
 app.use(userRoutes);
-app.use('/products', productsRoutes);
 app.get('/', (req, res) => res.render('home'));
 app.get('/about', (req, res) => res.render('about'));
+app.use('/products', productsRoutes);
 app.get('/cart', cart_view);
+app.post('/cart', change_quantity);
 app.delete('/cart', item_remove);
 
 
