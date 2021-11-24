@@ -9,31 +9,29 @@
     <h1 class="grid-item">Subtotal</h1>
 </div>
 <hr class="cart-hr">
-<div class="grid-container">
-    <% if (user) { %>
-        <% for (let i = 0; i < items.length; i++) { %>
+<% if (user) { %>
+    <% for (let i = 0; i < items.length; i++) { %>
+        <div class="product-info grid-container" data-product_id="<%= user.cart[i]._id %>">
             <span class="rel-container grid-item">
-                <img src="/images/products/<%= items[i].image[0] %>" alt="" class="item-img">
-                <span><%= items[i].title %></span>
+                <img src="/images/products/<%= items[i].image[0] %>" alt="" class="product-img">
+                <h2 class="inline-resize"><%= items[i].title %></h2>
             </span>
-            <span class="grid-item">$<%= items[i].price %></span>
-            <!-- INCREMENT/DECREMENT -->
+            <h2 class="inline-resize grid-item">$<%= items[i].price %></h2>
             <span class="grid-item">
-                <em class="fas fa-minus margin" id="decrement-product" data-decid="<%= user.cart[i]._id %>"></em>
-                    <%= user.cart[i].qty %>
-                <em class="fas fa-plus margin" id="increment-product" data-incid="<%= user.cart[i]._id %>"></em>
+                <em class="decrement fas fa-minus margin"></em>
+                    <h2 class="inline-resize"><%= user.cart[i].qty %></h2>
+                <em class="increment fas fa-plus margin"></em>
             </span>
-            <!-- SubTotal -->
-            <span class="grid-item rel-container">$<%= subTotals[i] %>
-                <a href="#" class="remove-btn black-and-white" 
-                data-objectid="<%= user.cart[i]._id %>">Remove</a>
+            <span class="grid-item rel-container">
+                <h2 class="inline-resize">$<%= subTotals[i] %></h2>
+                <button class="remove-btn">Remove</button>
             </span>
-    <% }} %>
-</div>
+        </div>
+<% }} %>
 <hr class="cart-hr">
 <div class="sub-btns">
-    <a href="/products" class="continue-shopping black-and-white">Continue Shopping</a>
-    <a href="" class="clear-cart black-and-white">Clear Shopping Cart</a>
+    <button id="shop">Continue Shopping</button>
+    <button id="clear-cart">Clear Shopping Cart</button>
     <span></span>
     <div class="checkout-container">
         <div class="checkout-info">
@@ -51,16 +49,19 @@
                 <h3 id="total-price">$<%= (totalPrice + 4.99).toFixed(2) %></h3>
             <% } %>
         </div>
-        <a href="" id="checkout-btn">Checkout</a>
+        <a id="checkout-btn">Checkout</a>
     </div>
 </div>
 <%- include('../partials/footer.ejs') %>
 </div>
 <script>
+    document.getElementById('shop').addEventListener('click', function (e) {
+        window.location.href = '/products';
+    })
 //Remove Product
     const deleteProducts = document.querySelectorAll('.remove-btn');
     deleteProducts.forEach( removeBtn => removeBtn.addEventListener('click', (e) => {
-        const { objectid } = removeBtn.dataset;
+        const objectid = removeBtn.closest(".product-info").dataset.product_id;
         fetch(`/cart`, {
             method: 'DELETE',
             body: JSON.stringify({ objectid }),
@@ -72,12 +73,10 @@
         })
         .catch((err) => console.log(err));
     }))
-
 //Increment Product
-    const addBtn = document.querySelectorAll('#increment-product');
+    const addBtn = document.querySelectorAll('.increment');
     addBtn.forEach( incBtn => incBtn.addEventListener('click', (e) => {
-        const incId = incBtn.dataset.incid;
-        console.log(incId);
+        const incId = incBtn.closest(".product-info").dataset.product_id;
         fetch('/cart', {
             method: 'POST',
             body: JSON.stringify({ incId }),
@@ -85,15 +84,14 @@
         })
         .then((res) => res.json())
         .then((data) => {
-            window.location = data.redirect;
+            window.location.href = data.redirect;
         })
         .catch((err) => console.log(err));
     }))
-
 //Decrement Product
-const subBtn = document.querySelectorAll('#decrement-product');
+const subBtn = document.querySelectorAll('.decrement');
     subBtn.forEach( decBtn => decBtn.addEventListener('click', (e) => {
-        const decId = decBtn.dataset.decid;
+        const decId = decBtn.closest(".product-info").dataset.product_id;
         fetch('/cart', {
             method: 'POST',
             body: JSON.stringify({ decId }),
@@ -101,7 +99,7 @@ const subBtn = document.querySelectorAll('#decrement-product');
         })
         .then((res) => res.json())
         .then((data) => {
-            window.location = data.redirect;
+            window.location.href = data.redirect;
         })
         .catch((err) => console.log(err));
     }))
