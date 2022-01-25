@@ -44,31 +44,45 @@ const product_delete = async (req, res) => {
 }
 
 
+
+
+
 // Add Product to Cart
 const add_product = async (req, res) => {
-    try {
-        const { productId, quantity } = req.body;
-        const userId = res.locals.user._id;
-        const userCart = await User.findById(userId);
-        let inventory = userCart.cart;
-
-        // Checking For Duplicates
-        for (let i = 0; i < inventory.length; i++) {
-            if (inventory[i].product === productId) {
-                const qty = inventory[i].qty;
-                const newQty = Number(quantity) + Number(qty);
-
-                inventory.splice(i, 1);
-                await User.findByIdAndUpdate(userId, { cart: [{ product: productId, qty: newQty }, ...inventory] });
-                return res.json({ redirect: '/cart' });
+    if (res.locals.user) {
+        try {
+            const { productId, quantity } = req.body;
+            const userId = res.locals.user._id;
+            const userCart = await User.findById(userId);
+            let inventory = userCart.cart;
+    
+            // Checking For Duplicates
+            for (let i = 0; i < inventory.length; i++) {
+                if (inventory[i].product === productId) {
+                    const qty = inventory[i].qty;
+                    const newQty = Number(quantity) + Number(qty);
+    
+                    inventory.splice(i, 1);
+                    await User.findByIdAndUpdate(userId, { cart: [{ product: productId, qty: newQty }, ...inventory] });
+                    return res.json({ redirect: '/cart' });
+                }
             }
+    
+            await User.findByIdAndUpdate(userId, { cart: [{ product: productId, qty: quantity }, ...inventory] });
+            res.json({ redirect: '/cart' });
+        } catch (error) {
+            console.log(error);
+            res.json({ msg: error });
         }
-
-        await User.findByIdAndUpdate(userId, { cart: [{ product: productId, qty: quantity }, ...inventory] });
-        res.json({ redirect: '/cart' });
-    } catch (error) {
-        console.log(error);
-        res.json({ msg: error });
+    }
+    else {
+        // Unauthenticated User
+        try {
+            const { productId, quantity } = req.body;
+            res.json({ redirect: '/cart', productId, quantity });
+        } catch (error) {
+            res.json({ msg: error });
+        }
     }
 }
 

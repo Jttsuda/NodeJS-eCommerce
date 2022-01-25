@@ -86,6 +86,9 @@
             headers: { 'Content-Type': 'application/json' }
         });
         const data = await res.json();
+        if (data.productId && data.quantity) {
+            localStorage.setItem(data.productId, data.quantity)
+        }
         if (data.msg) {
             console.log(data.msg);
         }
@@ -93,7 +96,6 @@
             location.assign(data.redirect);
         }
     })
-
 </script>
 </body>
 </html>
