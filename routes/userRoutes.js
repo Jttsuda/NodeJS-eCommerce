@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { 
-    user_register, 
-    user_register_post, 
-    user_login, user_login_post, 
-    user_logout } = require('../controllers/userController');
+    register_page, 
+    register_user, 
+    login_page, login_user, 
+    logout_user } = require('../controllers/userController');
 const { 
     add_product, 
     admin, 
@@ -12,9 +12,9 @@ const {
 const { imageUpload } = require('../middleware/adminMiddleware');
 
 
-router.route('/register').get(user_register).post(user_register_post);
-router.route('/login').get(user_login).post(user_login_post);
-router.get('/logout', user_logout);
+router.route('/register').get(register_page).post(register_user);
+router.route('/login').get(login_page).post(login_user);
+router.get('/logout', logout_user);
 router.get('/admin',  admin);
 router.get('/admin/:id',  admin_toggle);
 router.post('/admin', imageUpload.array('image'), add_product);

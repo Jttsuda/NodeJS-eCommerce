@@ -1,13 +1,14 @@
 const jwt = require('jsonwebtoken');
-const clsfd = require('../classified');
 const User = require('../models/user');
+require('dotenv').config()
 
-// Require a JWT (Logged in)
+
+// Require Authentication
 const requireAuth = (req, res, next) => {
     const token = req.cookies.jwt;
     // Verifying Token
     if (token) {
-        jwt.verify(token, clsfd.secretKey, (err, decodedToken) => {
+        jwt.verify(token, process.env.key, (err, decodedToken) => {
             if (err) {
                 console.log(err.message);
                 res.redirect('/login');
@@ -26,7 +27,7 @@ const checkUser = (req, res, next) => {
     const token = req.cookies.jwt;
     // Verifying Token
     if (token) {
-        jwt.verify(token, clsfd.secretKey, async (err, decodedToken) => {
+        jwt.verify(token, process.env.key, async (err, decodedToken) => {
             if (err) {
                 console.log(err.message);
                 res.locals.user = null;

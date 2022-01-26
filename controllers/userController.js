@@ -1,45 +1,38 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const clsfd = require('../classified');
+require('dotenv').config()
 
 
-// Handle Errors
 const handleErrors = (err) => {
-    // console.log(err.message, err.code);
     let errors = { username: '', password: '' };
-
     // Duplicate Error Code
     if (err.code === 11000) {
         errors.username = 'Username Already Exists';
         return errors;
     }
-
     // Validation Errors
     if (err.message.includes('user validation failed')) {
         Object.values(err.errors).forEach(({properties}) => {
             errors[properties.path] = properties.message;
         })
     }
-
     return errors;
 }
 
 
-// Create JWT
 const maxAge = 3 * 24 * 60 * 60; // value in seconds
 const createToken = (id) => {
-    return jwt.sign({ id }, clsfd.secretKey, {
+    return jwt.sign({ id }, process.env.key, {
         expiresIn: maxAge
     });
 }
 
 
-// Register
-const user_register = (req, res) => {
+const register_page = (req, res) => {
     res.render('users/register');
 }
 
-const user_register_post = async (req, res) => {
+const register_user = async (req, res) => {
     const { username, password } = req.body;
     try {
         const user = await User.create({ username, password });
@@ -54,12 +47,11 @@ const user_register_post = async (req, res) => {
 }
 
 
-// Login
-const user_login = (req, res) => {
+const login_page = (req, res) => {
     res.render('users/login');
 }
 
-const user_login_post = async (req, res) => {
+const login_user = async (req, res) => {
     const { username, password } = req.body;
     try {
         const user = await User.login(username, password);
@@ -72,27 +64,22 @@ const user_login_post = async (req, res) => {
     }
 }
 
-
-// Logout
-const user_logout = (req, res) => {
+const logout_user = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
     res.redirect('/login');
 }
 
 
-// User Home
 const user_home = (req, res) => {
     res.render('users/user_home');
 }
 
 
-
-// Exports
 module.exports = {
-    user_register,
-    user_register_post,
-    user_login,
-    user_login_post,
-    user_logout,
+    register_page,
+    register_user,
+    login_page,
+    login_user,
+    logout_user,
     user_home
 }
