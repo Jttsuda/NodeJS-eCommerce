@@ -1,13 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const productsRoutes = require('./routes/productsRoutes');
+const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
-const clsfd = require('./classified');
+const clsfd = require('./classified'); // use dotenv
 const cookieParser = require('cookie-parser');
-const { cart_view, item_remove, change_quantity } = require('./controllers/productController');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
-// const multer = require('multer')
 
 
 // Initializing Express and View Engine (EJS)
@@ -38,13 +36,10 @@ app.use(checkUser);
 
 // Routes
 app.use(userRoutes);
+app.use(productRoutes);
 app.get('/', (req, res) => res.render('home'));
 app.get('/about', (req, res) => res.render('about'));
-app.use('/products', productsRoutes);
-app.get('/cart', cart_view);
-app.post('/cart', change_quantity);
-app.delete('/cart', item_remove);
 
 
-// 404 Not Found
+// 404
 app.use((req, res) => res.status(404).render('404'));

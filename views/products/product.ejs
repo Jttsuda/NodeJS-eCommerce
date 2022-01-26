@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="/css/products/product.css">
 <div class="page-container">
 <%- include('../partials/nav.ejs') %>
-
     <div class="product-container">
         <div>
             <img src="/images/products/<%= product.image[1] %>" alt=""class="img-container">
@@ -39,7 +38,6 @@
             </div>
         </div>
     </div>
-    
 <%- include('../partials/footer.ejs') %>
 </div>
 <script>
@@ -58,7 +56,6 @@
             .catch((err) => console.log(err));
         })
     }
-
     // CHANGE QTY
     const minusButton = document.getElementById('minus-product')
     const addButton = document.getElementById('add-product')
@@ -73,7 +70,6 @@
         let productVal = productQty.textContent;
         productQty.textContent = Number(productVal) + 1;
     })
-
     // ADD PRODUCT
     const addProduct = document.getElementById('add-btn');
     addProduct.addEventListener('click', async (e) => {

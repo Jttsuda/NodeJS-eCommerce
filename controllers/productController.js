@@ -28,7 +28,7 @@ const product_details = (req, res) => {
 
 
 // Delete a Product and Images
-const product_delete = async (req, res) => {
+const delete_product = async (req, res) => {
     try {
         let product = await Product.findById(req.params.id);
         fs.unlink('./public/images/products/' + product.image[0], 
@@ -42,9 +42,6 @@ const product_delete = async (req, res) => {
         res.status(404).render('404');
     }
 }
-
-
-
 
 
 // Add Product to Cart
@@ -116,7 +113,7 @@ const cart_view = async (req, res) => {
 
 
 // Remove Product From Cart
-const item_remove = async (req, res) => {
+const remove_product = async (req, res) => {
     try {
         const { objectid } = req.body;
         const user = res.locals.user;
@@ -171,9 +168,9 @@ const change_quantity = async (req, res) => {
 module.exports = { 
     product_index, 
     product_details, 
-    product_delete, 
+    delete_product, 
     add_product,
     cart_view,
-    item_remove,
+    remove_product,
     change_quantity
 }

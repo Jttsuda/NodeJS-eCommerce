@@ -34,6 +34,7 @@ const admin = async (request, response) => {
   }
   }
 
+
 const admin_toggle = async (request, response) => {
   try {
     const user = await User.findById(request.params.id);
@@ -46,8 +47,6 @@ const admin_toggle = async (request, response) => {
     console.log(error);
   }
   }
-
-
 
 
 module.exports = { add_product, admin, admin_toggle }
