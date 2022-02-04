@@ -3,31 +3,7 @@ const User = require('../models/user')
 const fs = require('fs');
 
 
-// Products Page
-const product_index = async (req, res) => {
-    try {
-        const products = await Product.find();
-        res.render('products/products', { products });
-    } catch (err) {
-        console.log(err);
-    }
-}
-
-
-// Product Details Page
-const product_details = (req, res) => {
-    Product.findById(req.params.id)
-        .then((result) => {
-            res.render('products/product', { product: result });
-        })
-        .catch((err) => {
-            console.log(err);
-            res.status(404).render('404');
-        });
-}
-
-
-// Delete a Product and Images
+// Admin Authorization
 const delete_product = async (req, res) => {
     try {
         let product = await Product.findById(req.params.id);
@@ -44,28 +20,43 @@ const delete_product = async (req, res) => {
 }
 
 
-// Add Product to Cart
+// General Authorization
+const product_index = async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.render('products/products', { products });
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+const product_details = (req, res) => {
+    Product.findById(req.params.id)
+        .then((result) => {
+            res.render('products/product', { product: result });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(404).render('404');
+        });
+}
+
 const add_product = async (req, res) => {
     if (res.locals.user) {
         try {
             const { productId, quantity } = req.body;
-            const userId = res.locals.user._id;
-            const userCart = await User.findById(userId);
-            let inventory = userCart.cart;
-    
-            // Checking For Duplicates
+            const user = res.locals.user;
+            let inventory = user.cart;
+
             for (let i = 0; i < inventory.length; i++) {
                 if (inventory[i].product === productId) {
-                    const qty = inventory[i].qty;
-                    const newQty = Number(quantity) + Number(qty);
-    
-                    inventory.splice(i, 1);
-                    await User.findByIdAndUpdate(userId, { cart: [{ product: productId, qty: newQty }, ...inventory] });
+                    inventory[i].qty += Number(quantity);
+                    await user.save();
                     return res.json({ redirect: '/cart' });
                 }
             }
-    
-            await User.findByIdAndUpdate(userId, { cart: [{ product: productId, qty: quantity }, ...inventory] });
+
+            await User.findByIdAndUpdate(user._id, { cart: [{ product: productId, qty: quantity }, ...inventory] });
             res.json({ redirect: '/cart' });
         } catch (error) {
             console.log(error);
@@ -73,7 +64,6 @@ const add_product = async (req, res) => {
         }
     }
     else {
-        // Unauthenticated User
         try {
             const { productId, quantity } = req.body;
             res.json({ redirect: '/cart', productId, quantity });
@@ -83,8 +73,6 @@ const add_product = async (req, res) => {
     }
 }
 
-
-// Cart View
 const cart_view = async (req, res) => {
     if (typeof res.locals.user === 'object') {
         const user = res.locals.user;
@@ -111,8 +99,6 @@ const cart_view = async (req, res) => {
     res.render('products/cart');
 }
 
-
-// Remove Product From Cart
 const remove_product = async (req, res) => {
     try {
         const { objectid } = req.body;
@@ -131,8 +117,6 @@ const remove_product = async (req, res) => {
     }
 }
 
-
-// Increment or Decrement Product QTY in Cart
 const change_quantity = async (req, res) => {
     try {
         const { incId = false, decId = false } = req.body;
