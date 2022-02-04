@@ -73,32 +73,6 @@ const add_product = async (req, res) => {
     }
 }
 
-const cart_view = async (req, res) => {
-    if (typeof res.locals.user === 'object') {
-        const user = res.locals.user;
-        let items = [];
-        let subTotals = [];
-        let subTotal = 0.0;
-        let totalPrice = 0.0;
-        // Getting Cart Objects, SubTotals, and Total Price
-        for (let i = 0; i < user.cart.length; i++) {
-            const pid = user.cart[i].product;
-            const product = await Product.findById(pid);
-            const qty = user.cart[i].qty;
-            items.push(product);
-            subTotal += Number(product.price) * Number(qty);
-            subTotal = subTotal.toFixed(2);
-            subTotals.push(subTotal);
-            totalPrice += Number(subTotal);
-            subTotal = 0;
-        }
-        res.locals.items = items;
-        res.locals.subTotals = subTotals;
-        res.locals.totalPrice = totalPrice;
-    }
-    res.render('products/cart');
-}
-
 const remove_product = async (req, res) => {
     try {
         const { objectid } = req.body;
@@ -117,28 +91,49 @@ const remove_product = async (req, res) => {
     }
 }
 
+const cart_view = async (req, res) => {
+    if (typeof res.locals.user === 'object') {
+        const user = res.locals.user;
+        let items = [];
+        let subTotals = [];
+        let subTotal = 0.0;
+        let totalPrice = 0.0;
+        for (let i = 0; i < user.cart.length; i++) {
+            const pid = user.cart[i].product;
+            const product = await Product.findById(pid);
+            const qty = user.cart[i].qty;
+            items.push(product);
+            subTotal += Number(product.price) * Number(qty);
+            subTotal = subTotal.toFixed(2);
+            subTotals.push(subTotal);
+            totalPrice += Number(subTotal);
+            subTotal = 0;
+        }
+        res.locals.items = items;
+        res.locals.subTotals = subTotals;
+        res.locals.totalPrice = totalPrice;
+    }
+    res.render('products/cart');
+}
+
 const change_quantity = async (req, res) => {
     try {
         const { incId = false, decId = false } = req.body;
         const user = res.locals.user;
         const inventory = user.cart;
-        if (incId){
-            for (let i = 0; i < inventory.length; i++) {
-                if (inventory[i]._id == incId) {
-                    user.cart[i].qty = inventory[i].qty + 1;
-                    await user.save();
-                    break;
-                } 
-            }
-        }
-        else if (decId){
-            for (let i = 0; i < inventory.length; i++) {
-                if (inventory[i]._id == decId) {
-                    const newQty = inventory[i].qty - 1;
-                    newQty > 0 ? user.cart[i].qty = newQty : user.cart.splice(i, 1);
-                    await user.save();
-                    break;
-                } 
+        let productId;
+
+        if (incId) productId = incId;
+        else if (decId) productId = decId;
+
+        for (let i = 0; i < inventory.length; i++){
+            if (inventory[i]._id == productId){
+                incId ? inventory[i].qty++ : inventory[i].qty--;
+                if (inventory[i].qty <= 0){
+                    user.cart.splice(i, 1);
+                }
+                await user.save();
+                break;
             }
         }
         res.json({ redirect: '/cart' });
