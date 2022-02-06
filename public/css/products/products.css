@@ -51,7 +51,9 @@ input {
   margin: 10px;
 }
 .product-img {
+  object-fit: cover;
   width: 300px;
+  height: 200px;
   border-radius: 5px;
 }
 .title-price {
@@ -61,6 +63,7 @@ input {
 .product-title {
   font-weight: 100;
   margin: 5px;
+  color: var(--nav-chars);
 }
 .product-price {
   font-weight: 100;
