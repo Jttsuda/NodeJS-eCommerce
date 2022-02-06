@@ -1,6 +1,10 @@
 #about-container {
   display: flex;
   justify-content: center;
+  height: calc(100vh - var(--nav-height) - var(--margin-bottom));
+  transform: translateY(calc(-1 * var(--margin-bottom) - 10px));
+  align-items: center;
+  color: var(--nav-chars);
 }
 #content-container {
   display: flex;
@@ -8,14 +12,17 @@
 }
 #about-img {
   margin: 0px 20px;
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
 }
 #about-content {
   margin: 20px;
 }
 .underline {
-  height: 4px;
+  height: 3px;
   width: 100px;
-  background-color: var(--nav-clr);
+  background-color: var(--nav-chars);
 }
 #about-subtext {
   margin-top: 20px;
