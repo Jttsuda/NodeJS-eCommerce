@@ -5,27 +5,29 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 :root {
-  /* --nav-clr: #928370; */
-  --nav-clr: #36332d;
-  /* --primary-clr: #fbf8f4; */
-  --primary-clr: #c4b9a9;
+  --nav-clr: rgb(37, 40, 42);
   --secondary-clr: #7f6e57;
   --dark-btn: #40372c;
   --flat-black: rgb(32, 32, 32);
-  --nav-chars: #fbfcff;
+  --nav-chars: #fbfcffdc;
   --price-chars: rgba(165, 42, 42, 0.774);
   --line-clr: rgb(138, 138, 138);
   --nav-height: 80px;
   --footer-height: 60px;
   --margin-bottom: 40px;
 }
+body {
+  background-color: rgb(24, 26, 27);
+}
 a {
   text-decoration: none;
   color: var(--flat-black);
 }
+
 .page-container {
   position: relative;
   min-height: 100vh;
+  color: var(--nav-chars);
 }
 
 /*================
@@ -103,24 +105,20 @@ Header/Navigation
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--flat-black);
+  background-color: var(--nav-clr);
   color: var(--nav-chars);
 }
 #copyright-tag {
   font-size: 1rem;
   font-weight: 100;
 }
-.company-title {
-  color: var(--nav-clr);
-  margin-right: 5px;
-}
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
