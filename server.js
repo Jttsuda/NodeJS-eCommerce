@@ -1,8 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const productRoutes = require('./routes/productRoutes');
-const userRoutes = require('./routes/userRoutes');
 const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 require('dotenv').config()
@@ -26,19 +24,19 @@ mongoose.connect(process.env.dbURI, { useNewUrlParser: true, useUnifiedTopology:
 
 
 // Middleware/Static Files
-app.use(express.static('public'));//Setting up Static Files
-app.use(express.json());//To recognize the incoming Request Object as a JSON Object.
-app.use(express.urlencoded({ extended: true }));//Accepting POST Form Data
+app.use(express.static('public'));// Serves static files
+app.use(express.json());// Parses incoming requests with JSON payloads
+app.use(express.urlencoded({ extended: true }));// Parses incoming requests with urlencoded payloads
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(checkUser);
 
 
 // Routes
-app.use(userRoutes);
-app.use(productRoutes);
 app.get('/', (req, res) => res.render('home'));
 app.get('/about', (req, res) => res.render('about'));
+app.use(require('./routes/userRoutes'));
+app.use(require('./routes/productRoutes'));
 
 
 // 404
