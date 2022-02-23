@@ -19,11 +19,14 @@ input {
 }
 #category-title {
   margin: 20px;
+  font-size: 2rem;
 }
 .category-filter {
   font-weight: 100;
   margin: 10px;
   margin-left: 25px;
+  cursor: pointer;
+  user-select: none;
 }
 
 /* Top Line */
