@@ -2,10 +2,25 @@
 <link rel="stylesheet" href="/css/products/products.css">
 <div class="page-container">
 <%- include('../partials/nav.ejs') %>
-    <div id="main-container">
 
+<div id="search-container">
+    <div>
+        <input type="text" placeholder="Search">
+        <em class="fas fa-solid fa-magnifying-glass"></em>
+    </div>
+</div>
+<div id="hr-container"><hr></div>
+
+    <div id="main-container">
         <div class="filters-container">
-            <input type="text" placeholder="Search">
+            <h2 id="category-title">Price</h2>
+            <h3 class="category-filter">$0 to $25</h3>
+            <h3 class="category-filter">$25 to $50</h3>
+            <h3 class="category-filter">$50 to $100</h3>
+            <h3 class="category-filter">$100 to $200</h3>
+            <h3 class="category-filter">$200 to $400</h3>
+            <h3 class="category-filter">$400+</h3>
+            <br>
             <h2 id="category-title">Category</h2>
             <h3 class="category-filter">Everything</h3>
             <h3 class="category-filter">Computers</h3>
@@ -13,12 +28,7 @@
             <h3 class="category-filter">Furniture</h3>
             <h3 class="category-filter">Accessories</h3>
         </div>
-
         <div>
-            <div class="top-line">
-                <hr id="hr-line">
-                <span id="products-found"><%= products.length %> Products Found</span>
-            </div>
             <div class="products-container">
                 <% if (products.length> 0) { %>
                     <% products.forEach(product=> { %>
@@ -37,7 +47,6 @@
                 <% } %>
             </div>
         </div>
-
     </div>
 <%- include('../partials/footer.ejs') %>
 </div>
