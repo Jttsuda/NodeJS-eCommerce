@@ -5,46 +5,44 @@
     <%- include('../partials/nav.ejs') %>
     <div id="controls-container">
         <!-- Add Product -->
-        <div class="add-product-container">
+        <div id="add-product-container">
             <form action="/admin" method="POST" enctype="multipart/form-data">
-                <h1 class="add-product-title">Add Product</h1>
+                <h1 id="add-product-title">Add Product</h1>
                 <label for="title">Title:</label>
                 <input type="text" name="title" class="margin margin-right">
                 <label for="price">Price:</label>
                 <input type="text" name="price" class="margin margin-right">
                 <label for="quantity">Qty:</label>
                 <input type="text" name="quantity" class="margin margin-right">
-                <div class="align-center">
+                <div id="text-fields">
                     <label for="desc" class="underline">Description</label>
                     <textarea type="text" name="desc" class="margin" rows="4" cols="30"></textarea>
                     <label for="categories" class="underline">Categories (Separate with comma)</label>
-                    <textarea type="text" name="categories" class="margin" rows="1" cols="30"></textarea>
-                    <hr class="margin-bottom">
-                    <label for="image" class="underline">Small image</label>
+                    <textarea type="text" name="categories" class="margin" rows="2" cols="30"></textarea>
+                </div>
+                <div id="images">
+                    <label for="image" class="underline">Thumbnail</label>
                     <input type="file" name="image" id="image" class="margin">
-                    <hr class="margin-bottom">
-                    <label for="image" class="underline">Large image</label>
+                    <label for="image" class="underline">Product Image</label>
                     <input type="file" name="image" id="image" class="margin">
                 </div>
-                <input type="submit" class="submit-btn" value="Upload">
+                <input type="submit" id="submit-btn" value="Upload">
             </form>
         </div>
 
         <!-- User Info -->
-        <div class="user-container">
-            <h1 class="admin-title">User Info</h1>
+        <div id="user-container">
+            <h1 id="admin-title">Admin Status</h1>
             <div class="user-names">
-                <h3 class="user-info">Username / Admin</h3>
+                <h3 id="user-info">Username / Admin</h3>
             </div>
             <hr>
-            <div class="center">
-                <input type="text" placeholder="Search..." class="margin">
-            </div>
+            <input type="text" placeholder="Search..." class="margin">
             <div>
             <% users.forEach(user => { %>
                 <div class="user-names">
-                    <h4 class="admin-toggle"><%= user.username %> / <%= user.admin %></h4>
-                    <a href="/admin/<%= user.id %>" class="toggle-btn"><h6>Toggle</h6></a>
+                    <h4 id="admin-toggle"><%= user.username %> / <%= user.admin %></h4>
+                    <a href="/admin/<%= user.id %>" id="toggle-btn"><h6>Toggle</h6></a>
                 </div>
             <% }); %>
             </div>
