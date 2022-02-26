@@ -11,6 +11,7 @@ input {
   border-radius: 5px;
   font-size: 1rem;
   outline: none;
+  padding-left: 160px;
 }
 
 /* Search Area */
@@ -25,6 +26,22 @@ input {
   position: relative;
   width: 1100px;
 }
+#categories {
+  position: absolute;
+  cursor: pointer;
+  background-color: var(--nav-clr);
+  z-index: 1;
+  top: 0px;
+  left: -2px;
+  padding: 10px;
+  padding-right: 18px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+#categories span {
+  padding-left: 15px;
+  font-weight: bold;
+}
 #search-container input {
   position: absolute;
   inset: 0px;
@@ -33,14 +50,14 @@ input {
 }
 .fa-magnifying-glass {
   position: absolute;
-  top: -1px;
-  right: -1px;
+  cursor: pointer;
   background-color: var(--nav-clr);
+  z-index: 1;
+  top: 0px;
+  right: -2px;
   padding: 12px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  z-index: 1;
-  cursor: pointer;
 }
 #hr-container {
   display: flex;
@@ -52,10 +69,6 @@ input {
 }
 
 /* Filters */
-.filters-container {
-  margin: 20px;
-  margin-top: 0px;
-}
 #category-title {
   margin: 20px;
   font-size: 1.7rem;
