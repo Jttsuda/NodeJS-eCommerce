@@ -80,6 +80,9 @@ input {
   cursor: pointer;
   user-select: none;
 }
+.category-filter:hover {
+  font-weight: bold;
+}
 
 /* Products Container */
 .products-container {

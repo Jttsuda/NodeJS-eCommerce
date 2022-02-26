@@ -3,23 +3,30 @@ const User = require('../models/user');
 
 
 const add_product = async (request, response) => {
-  console.log(request.file);
-  let newArray = [];
+  // console.log(request.file);
+  let imageArr = [];
+  let categoriesArr = request.body.categories.split(',');
   for(let i = 0; i < request.files.length; i++) {
-    newArray.push(request.files[i].filename);
+    imageArr.push(request.files[i].filename);
+  }
+  for (let i = 0; i < categoriesArr.length; i++){
+    categoriesArr[i] = categoriesArr[i].trim().toLowerCase();
   }
   let product = new Product({
     title: request.body.title,
     price: request.body.price,
+    quantity: request.body.quantity,
     desc: request.body.desc,
-    image: newArray
+    image: imageArr,
+    categories: categoriesArr
   });
 
   try {
     await product.save();
-    response.redirect(`/`);
+    response.redirect(`/products`);
   } catch (error) {
     console.log(error);
+    response.redirect(`/products`);
   }
 }
 
