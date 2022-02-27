@@ -33,7 +33,7 @@ const checkUser = (req, res, next) => {
                 res.locals.user = null;
                 next();
             } else {
-                let user = await User.findById(decodedToken.id);
+                const user = await User.findById(decodedToken.id);
                 // Get Cart Total QTY
                 let totalQty = 0;
                 for (let i = 0; i < user.cart.length; i++) {

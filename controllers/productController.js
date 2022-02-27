@@ -23,8 +23,14 @@ const delete_product = async (req, res) => {
 // General Authorization
 const product_index = async (req, res) => {
     try {
-        const products = await Product.find();
-        res.render('products/products', { products });
+        // TODO: Pagination
+        const limit = 12;
+        const currentPage = parseInt(req.query.page)
+        const totalPages = Math.ceil(await Product.countDocuments() / limit);
+        const startIndex = currentPage ? limit * (currentPage - 1) : 0;
+        const products = await Product.find().skip(startIndex).limit(limit);
+
+        res.render('products/products', { products, totalPages, currentPage });
     } catch (err) {
         console.log(err);
     }
