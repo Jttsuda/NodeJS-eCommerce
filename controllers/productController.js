@@ -24,7 +24,7 @@ const delete_product = async (req, res) => {
 const product_index = async (req, res) => {
     try {
         // TODO: Pagination
-        const limit = 12;
+        const limit = 9;
         const currentPage = parseInt(req.query.page)
         const totalPages = Math.ceil(await Product.countDocuments() / limit);
         const startIndex = currentPage ? limit * (currentPage - 1) : 0;

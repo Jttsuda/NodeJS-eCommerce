@@ -52,10 +52,13 @@
                     <h3>Nothing to Display</h3>
                 <% } %>
             </div>
-            <!-- TODO: Pagination -->
-            <% if (totalPages > 0) { %>
-                <span>Numbers of Pages: &nbsp<%= totalPages %></span>
-            <% } %>
+            <div id="pagination">
+                <span class="pagi-btn" id="prev-page"><em class="fa-solid fa-angle-left"></em></span>
+                <% for (let i=1; i<=totalPages; i++) { %>
+                    <a class="pagi-btn" href="/products?page=<%= i %>"><span><%= i %></span></a>
+                <% } %>
+                <span class="pagi-btn" id="next-page"><em class="fa-solid fa-angle-right"></em></span>
+            </div>
         </div>
     </div>
 <%- include('../partials/footer.ejs') %>

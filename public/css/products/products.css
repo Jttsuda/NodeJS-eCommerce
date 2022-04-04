@@ -113,6 +113,35 @@ input {
   margin: 5px;
 }
 
+/* Pagination */
+#pagination {
+  --border-clr: rgba(8, 6, 6, 0.534);
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pagi-btn {
+  color: whitesmoke;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid var(--border-clr);
+  border-top: 2px solid var(--border-clr);
+  border-bottom: 2px solid var(--border-clr);
+}
+.pagi-btn:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#prev-page {
+  border-left: 2px solid var(--border-clr);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+#next-page {
+  border-right: 2px solid var(--border-clr);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
 /*================
 Media Queries
 ================*/
